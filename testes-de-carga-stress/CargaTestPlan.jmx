@@ -17,14 +17,29 @@
             <stringProp name="Argument.value">${__P(scheme, https)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="host" elementType="Argument">
-            <stringProp name="Argument.name">host</stringProp>
-            <stringProp name="Argument.value">${__P(host, localhost)}</stringProp>
+          <elementProp name="host_sei" elementType="Argument">
+            <stringProp name="Argument.name">host_sei</stringProp>
+            <stringProp name="Argument.value">${__P(host_sei, localhost)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="host_sip" elementType="Argument">
+            <stringProp name="Argument.name">host_sip</stringProp>
+            <stringProp name="Argument.value">${__P(host_sip, localhost)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="portinhola" elementType="Argument">
             <stringProp name="Argument.name">portinhola</stringProp>
             <stringProp name="Argument.value">${__P(portinhola, 443)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="path_prefix_sei" elementType="Argument">
+            <stringProp name="Argument.name">path_prefix_sei</stringProp>
+            <stringProp name="Argument.value">${__P(path_prefix_sei, /sei)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="path_prefix_sip" elementType="Argument">
+            <stringProp name="Argument.name">path_prefix_sip</stringProp>
+            <stringProp name="Argument.value">${__P(path_prefix_sip, /sip)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="idOrgao" elementType="Argument">
@@ -380,8 +395,8 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
-        <stringProp name="HTTPSampler.domain">${host}</stringProp>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+        <stringProp name="HTTPSampler.domain">${host_sei}</stringProp>
         <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
         <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
         <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -504,7 +519,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao" enabled="true"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
@@ -532,7 +547,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters">
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
           <collectionProp name="UserParameters.names">
             <stringProp name="525370246">user.login</stringProp>
             <stringProp name="294148180">user.pass</stringProp>
@@ -560,17 +575,14 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Criar Processo" enabled="true">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Criar Processo">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -658,11 +670,8 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/CliqueIniciar" enabled="true">
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/CliqueIniciar">
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -812,10 +821,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
           </IfController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/CliqueIniciar2" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=procedimento_escolher_tipo&amp;acao_origem=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_if}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_escolher_tipo&amp;acao_origem=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_if}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -877,11 +883,8 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
             </hashTree>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo" enabled="false">
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -978,12 +981,9 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo" enabled="true">
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo">
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=procedimento_escolher_tipo&amp;acao_origem=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_escolher_tipo&amp;acao_origem=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1162,11 +1162,8 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
           </JSR223Sampler>
           <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarAssunto" enabled="true">
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1296,11 +1293,8 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
           </IfController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarContato1" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1408,11 +1402,8 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Salvar" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;acao_retorno=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;acao_retorno=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1662,14 +1653,11 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Visualizar" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Visualizar">
             <stringProp name="TestPlan.comments">
 </stringProp>
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1781,9 +1769,7 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/VisualizarArvore" enabled="true">
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1858,9 +1844,7 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/ArvoreProcessarHtml" enabled="true">
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1940,11 +1924,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
             </JSR223Sampler>
             <hashTree/>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Novo Documento" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2089,11 +2070,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
             </IfController>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Tipo" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_escolher_tipo&amp;acao_origem=documento_escolher_tipo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_exibir_serie}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_escolher_tipo&amp;acao_origem=documento_escolher_tipo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_exibir_serie}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2220,11 +2198,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
               </hashTree>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Clique em NovoTipoDoc" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_escolher_tipo&amp;acao_origem=documento_escolher_tipo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_escolher_tipo&amp;acao_origem=documento_escolher_tipo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2342,11 +2317,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Documento" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_gerar&amp;acao_origem=documento_gerar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=${id_serie_rand}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_gerar&amp;acao_origem=documento_gerar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=${id_serie_rand}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2724,11 +2696,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Documento/VisualizarFrame" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2837,11 +2806,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Documento/VisualizarArvore" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2923,11 +2889,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Documento/VisualizarEditor" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -2999,11 +2962,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Documento/VisualizarEditorPopup" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3090,10 +3050,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Editar" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Editar/Ajax" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador_ajax.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3140,11 +3097,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
               </HTTPSamplerProxy>
               <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Editar/Botao" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3346,11 +3300,8 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 1" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Ajax" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador_ajax.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3408,11 +3359,8 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Salvar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/editor/editor_processar.php?acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/editor/editor_processar.php?acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3491,11 +3439,8 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Visualizar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3589,11 +3534,8 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 2" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Ajax" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador_ajax.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3708,11 +3650,8 @@ vars.put(&quot;secao_3_texto&quot;, secao_3_texto + sequencia_pesquisa )
               </JSR223Sampler>
               <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Salvar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/editor/editor_processar.php?acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/editor/editor_processar.php?acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3798,11 +3737,8 @@ vars.put(&quot;secao_3_texto&quot;, secao_3_texto + sequencia_pesquisa )
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Visualizar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -3926,11 +3862,8 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Assinar" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/Clique em Assinar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4081,11 +4014,8 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Salvar Assinar" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/Clique em Salvar Assinar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_assinar&amp;acao_origem=documento_assinar&amp;acao_retorno=principal&amp;hash_documentos=${hash_documento}&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_assinar&amp;acao_origem=documento_assinar&amp;acao_retorno=principal&amp;hash_documentos=${hash_documento}&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4185,11 +4115,8 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/VisualizarFrame" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4305,11 +4232,8 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/VisualizarArvore" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4381,11 +4305,8 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/VisualizarDoc" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4587,11 +4508,8 @@ vars.put(&quot;upload_identifier&quot;, n + &quot;&quot;)
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="NovoDoc" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Clique em Novo" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4732,11 +4650,8 @@ vars.put(&quot;upload_identifier&quot;, n + &quot;&quot;)
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Selecionar Externo" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Selecionar Tipo" enabled="false">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4829,11 +4744,8 @@ vars.put(&quot;upload_identifier&quot;, n + &quot;&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Selecionar Tipo" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_escolher_tipo&amp;acao_origem=documento_escolher_tipo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_escolher_tipo&amp;acao_origem=documento_escolher_tipo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4920,11 +4832,8 @@ vars.put(&quot;upload_identifier&quot;, n + &quot;&quot;)
               </hashTree>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Selecionar AbaixoAssinado" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_receber&amp;acao_origem=documento_receber&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_receber&amp;acao_origem=documento_receber&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -5296,9 +5205,6 @@ vars.put(&quot;upload_identifier&quot;, n + &quot;&quot;)
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Browsefile" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/UploadAjax" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                 <stringProp name="HTTPSampler.path">/infra_js/infra_upload_progresso.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -5333,11 +5239,8 @@ vars.put(&quot;upload_identifier&quot;, n + &quot;&quot;)
               </HTTPSamplerProxy>
               <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Upload" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_upload_anexo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_upload}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_upload_anexo&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_upload}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -5394,9 +5297,6 @@ vars.put(&quot;upload_cnt&quot;, n + &quot;&quot;)</stringProp>
                 </JSR223Sampler>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="upload/infra_js/infra_upload_progresso.php" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/infra_upload_progresso.php</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -5469,11 +5369,8 @@ vars.put(&quot;upload_k&quot;, upload_k + &quot; kb&quot;)
               <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/ajax_documento_recebido_duplicado" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador_ajax.php?acao_ajax=documento_recebido_duplicado&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_doc_ajax}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php?acao_ajax=documento_recebido_duplicado&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_doc_ajax}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -5507,11 +5404,8 @@ vars.put(&quot;upload_k&quot;, upload_k + &quot; kb&quot;)
               <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Salvar" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=documento_receber&amp;acao_origem=documento_receber&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=documento_receber&amp;acao_origem=documento_receber&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;id_serie=-1&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -5890,11 +5784,8 @@ vars.put(&quot;upload_k&quot;, upload_k + &quot; kb&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Visualizar Frame" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6023,11 +5914,8 @@ vars.put(&quot;upload_k&quot;, upload_k + &quot; kb&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Visualizar Arvore" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6109,11 +5997,8 @@ vars.put(&quot;upload_k&quot;, upload_k + &quot; kb&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/ArvoreProcessar" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6164,11 +6049,8 @@ vars.put(&quot;upload_k&quot;, upload_k + &quot; kb&quot;)
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocExterno/Visualizar Doc" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6347,7 +6229,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -6385,7 +6267,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_002}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_002}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_002}</stringProp>
@@ -6399,9 +6281,9 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao" enabled="true"/>
         <hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao">
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
@@ -6507,7 +6389,7 @@ for (j=1;j&lt;=dex.size(); j++){
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters">
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
           <collectionProp name="UserParameters.names">
             <stringProp name="525370246">user.login</stringProp>
             <stringProp name="294148180">user.pass</stringProp>
@@ -6535,13 +6417,13 @@ for (j=1;j&lt;=dex.size(); j++){
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Pesquisar na Barra"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Pesquisar na Barra" enabled="true"/>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
             <stringProp name="LoopController.loops">5</stringProp>
           </LoopController>
           <hashTree>
-            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao">
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -6646,17 +6528,14 @@ for (j=1;j&lt;=dex.size(); j++){
 }</stringProp>
             </JSR223Sampler>
             <hashTree/>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Pesquisar Protocolo">
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Pesquisar Protocolo" enabled="true">
               <boolProp name="TransactionController.parent">true</boolProp>
               <boolProp name="TransactionController.includeTimers">false</boolProp>
             </TransactionController>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6722,13 +6601,10 @@ for (j=1;j&lt;=dex.size(); j++){
                   <hashTree/>
                 </hashTree>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Num Protocolo">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Num Protocolo" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6789,12 +6665,9 @@ for (j=1;j&lt;=dex.size(); j++){
                 </ResponseAssertion>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/VisualizarFrame">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/VisualizarFrame" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6883,11 +6756,8 @@ for (j=1;j&lt;=dex.size(); j++){
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/VisualizarFrame" enabled="false">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -6975,12 +6845,9 @@ for (j=1;j&lt;=dex.size(); j++){
                 </ResponseAssertion>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7054,12 +6921,9 @@ for (j=1;j&lt;=dex.size(); j++){
                 </RegexExtractor>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7146,11 +7010,8 @@ for (j=1;j&lt;=dex.size(); j++){
                 <hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Numero" enabled="true">
                     <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_frm_pesquisa}</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_frm_pesquisa}</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7200,11 +7061,8 @@ for (j=1;j&lt;=dex.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/VisualizarFrame" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7303,11 +7161,8 @@ for (j=1;j&lt;=dex.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Visualizar Arvore" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7379,11 +7234,8 @@ for (j=1;j&lt;=dex.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Visualizar Doc" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7476,7 +7328,7 @@ for (j=1;j&lt;=dex.size(); j++){
                 </hashTree>
               </hashTree>
             </hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEachDocsExternos">
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEachDocsExternos" enabled="true">
               <stringProp name="ForeachController.inputVal">pesquisaNaUnidade_DocumentoExterno</stringProp>
               <stringProp name="ForeachController.returnVal">documento_numero_pesquisar</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
@@ -7493,10 +7345,7 @@ for (j=1;j&lt;=dex.size(); j++){
                 <hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei/" enabled="false">
                     <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7521,11 +7370,8 @@ for (j=1;j&lt;=dex.size(); j++){
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsExternos/Num" enabled="true">
                     <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_frm_pesquisa}</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_frm_pesquisa}</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7585,11 +7431,8 @@ for (j=1;j&lt;=dex.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsExternos/Frame" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7698,11 +7541,8 @@ for (j=1;j&lt;=dex.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsExternos/Arvore" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7784,11 +7624,8 @@ for (j=1;j&lt;=dex.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7840,11 +7677,8 @@ for (j=1;j&lt;=dex.size(); j++){
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsExternos/Documento" enabled="true">
                     <boolProp name="HTTPSampler.md5">true</boolProp>
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -7939,7 +7773,7 @@ for (j=1;j&lt;=dex.size(); j++){
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -7976,7 +7810,7 @@ for (j=1;j&lt;=dex.size(); j++){
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -8014,7 +7848,7 @@ for (j=1;j&lt;=dex.size(); j++){
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_003}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_003}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_003}</stringProp>
@@ -8134,7 +7968,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Pesquisar e Atribuir Processo">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Pesquisar e Atribuir Processo" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
@@ -8143,10 +7977,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8195,11 +8026,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Num Protocolo" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8261,11 +8089,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/VisualizarFrame" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8364,11 +8189,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8443,11 +8265,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8519,11 +8338,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="clique em atribuir" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="clique em atribuir/sei/controlador.php" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8616,11 +8432,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="clique em salvar/sei/controlador.php?acao=procedimento_atribuicao_cadastrar" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=procedimento_atribuicao_cadastrar&amp;acao_origem=procedimento_atribuicao_cadastrar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_atribuicao_cadastrar&amp;acao_origem=procedimento_atribuicao_cadastrar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8682,11 +8495,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="clique em salvar/sei/controlador.php" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8776,11 +8586,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="clique em salvar/sei/controlador.php" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8855,11 +8662,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc" enabled="true">
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -8968,7 +8772,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -9006,7 +8810,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_004}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_004}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_004}</stringProp>
@@ -9134,10 +8938,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9186,11 +8987,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Num Protocolo" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9252,11 +9050,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/VisualizarFrame" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9355,11 +9150,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9434,11 +9226,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9511,11 +9300,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Selecionar PDF" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Clique em Selecionar PDF/sei/controlador.php" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9669,11 +9455,8 @@ vars.put(&quot;chkItemArray&quot;, v)
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Gerar PDF" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/sei/controlador.php?acao=procedimento_gerar_pdf&amp;acao_origem=procedimento_gerar_pdf" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=procedimento_gerar_pdf&amp;acao_origem=procedimento_gerar_pdf&amp;acao_retorno=arvore_visualizar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_gerar_pdf&amp;acao_origem=procedimento_gerar_pdf&amp;acao_retorno=arvore_visualizar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -9769,8 +9552,6 @@ vars.put(&quot;chkItemArray&quot;, v)
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Assets" enabled="true"/>
               <hashTree>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/infra-tooltip.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/infra-tooltip.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9789,8 +9570,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/infra-barra-progresso.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/infra-barra-progresso.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9809,8 +9588,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/calendario/v2/infra-calendario.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/calendario/v2/infra-calendario.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9829,8 +9606,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/infra-ajax.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/infra-ajax.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9849,8 +9624,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/arvore/infra-arvore.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/arvore/infra-arvore.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9869,8 +9642,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/mapa/infra-mapa.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/mapa/infra-mapa.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9889,8 +9660,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.min.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.min.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9909,8 +9678,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.structure.min.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.structure.min.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9929,8 +9696,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/multiple-select/multiple-select.min.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/multiple-select/multiple-select.min.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9949,8 +9714,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.theme.min.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.theme.min.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9969,8 +9732,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/modal/jquery.modalLink-1.0.0.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/modal/jquery.modalLink-1.0.0.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -9989,8 +9750,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/esquemas/azul_celeste/infra-esquema-3.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/esquemas/azul_celeste/infra-esquema-3.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10009,8 +9768,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/bootstrap/menu-bootstrap.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/bootstrap/menu-bootstrap.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10029,9 +9786,7 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/sei/css/infra-local-esquema-3.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-                  <stringProp name="HTTPSampler.path">/sei/css/infra-local-esquema-3.css</stringProp>
+                  <stringProp name="HTTPSampler.path">${path_prefix_sei}/css/infra-local-esquema-3.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
                   <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -10049,8 +9804,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/ddslick/jquery.ddslick.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/ddslick/jquery.ddslick.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10069,8 +9822,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/infra-global-esquema-3.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/infra-global-esquema-3.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10089,8 +9840,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/multiple-select/multiple-select.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/multiple-select/multiple-select.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10109,8 +9858,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/modal/jquery.modalLink-1.0.0.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/modal/jquery.modalLink-1.0.0.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10129,8 +9876,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraPaginaEsquema3.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraPaginaEsquema3.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10149,8 +9894,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraBotaoMenu.js-1,${portinhola}" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraBotaoMenu.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10169,8 +9912,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraUpload.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraUpload.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10189,8 +9930,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraCookie.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraCookie.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10209,8 +9948,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraSelectEditavel.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraSelectEditavel.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10229,8 +9966,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraLupas.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraLupas.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10249,8 +9984,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraTooltip.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraTooltip.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10269,8 +10002,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/jquery/jquery-3.6.0.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/jquery/jquery-3.6.0.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10289,8 +10020,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/hotkeys/jquery.hotkeys.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/hotkeys/jquery.hotkeys.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10309,8 +10038,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/bootstrap/infra-menu-bootstrap.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/bootstrap/infra-menu-bootstrap.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10329,8 +10056,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/maskedpwd/MaskedPassword.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/maskedpwd/MaskedPassword.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10349,8 +10074,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/touch/jquery.ui.touch-punch.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/touch/jquery.ui.touch-punch.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10369,9 +10092,7 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/sei/js/sei.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-                  <stringProp name="HTTPSampler.path">/sei/js/sei.js</stringProp>
+                  <stringProp name="HTTPSampler.path">${path_prefix_sei}/js/sei.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
                   <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -10389,8 +10110,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraTabelaDinamica.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraTabelaDinamica.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10409,8 +10128,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/arvore/InfraArvore.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/arvore/InfraArvore.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10429,8 +10146,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraAjax.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraAjax.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10449,8 +10164,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/calendario/v2/InfraCalendario.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/calendario/v2/InfraCalendario.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10469,8 +10182,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/bootstrap/bootstrap.min.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/bootstrap/bootstrap.min.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10489,8 +10200,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/bootstrap/bootstrap.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/bootstrap/bootstrap.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10509,8 +10218,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/InfraUtil.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/InfraUtil.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10529,8 +10236,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.min.js" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_js/jquery/jquery-ui-1.11.1/jquery-ui.min.js</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10549,8 +10254,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/infra-impressao-global.css" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/infra-impressao-global.css</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10569,8 +10272,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/svg/topo.svg" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/svg/topo.svg</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10589,8 +10290,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/svg/check.svg" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/svg/check.svg</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10602,8 +10301,6 @@ vars.put(&quot;chkItemArray&quot;, v)
                 </HTTPSamplerProxy>
                 <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/infra_css/svg/voltar.svg" enabled="true">
-                  <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                  <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                   <stringProp name="HTTPSampler.path">/infra_css/svg/voltar.svg</stringProp>
                   <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                   <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -10618,11 +10315,8 @@ vars.put(&quot;chkItemArray&quot;, v)
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Gerar PDF/sei/controlador.php" enabled="true">
               <boolProp name="HTTPSampler.md5">true</boolProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -10782,7 +10476,7 @@ vars.put(&quot;chkItemArray&quot;, v)
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -10820,7 +10514,7 @@ vars.put(&quot;chkItemArray&quot;, v)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_005}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_005}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_005}</stringProp>
@@ -10949,10 +10643,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11001,11 +10692,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Num Protocolo" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11067,11 +10755,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/VisualizarFrame" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11170,11 +10855,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11249,11 +10931,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
               <hashTree/>
             </hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/Visualizar Arvore Proc" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11326,11 +11005,8 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Anotacao" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Clique em Anotacao/sei/controlador.php" enabled="true">
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">GET</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11431,11 +11107,8 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Anotacao/sei/controlador.php?acao=anotacao_registrar" enabled="true">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-              <stringProp name="HTTPSampler.domain">${host}</stringProp>
-              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
               <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=anotacao_registrar&amp;acao_origem=anotacao_registrar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=anotacao_registrar&amp;acao_origem=anotacao_registrar&amp;arvore=1&amp;id_procedimento=${id_procedimento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
               <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11571,7 +11244,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -11609,7 +11282,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário006-PesquisaSolrDocInterno">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário006-PesquisaSolrDocInterno" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_006}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_006}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_006}</stringProp>
@@ -11625,7 +11298,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
       <hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao" enabled="true"/>
         <hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao">
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
@@ -11749,13 +11422,13 @@ for (j=1;j&lt;=dis.size(); j++){
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Pesquisar na Barra"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Pesquisar na Barra" enabled="true"/>
         <hashTree>
-          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
             <stringProp name="LoopController.loops">5</stringProp>
           </LoopController>
           <hashTree>
-            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao">
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -11850,17 +11523,14 @@ for (j=1;j&lt;=dis.size(); j++){
 </stringProp>
             </JSR223Sampler>
             <hashTree/>
-            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Pesquisar Protocolo">
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Pesquisar Protocolo" enabled="true">
               <boolProp name="TransactionController.parent">true</boolProp>
               <boolProp name="TransactionController.includeTimers">false</boolProp>
             </TransactionController>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
                 <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-                <stringProp name="HTTPSampler.path">/sei/</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11927,7 +11597,7 @@ for (j=1;j&lt;=dis.size(); j++){
                 </hashTree>
               </hashTree>
             </hashTree>
-            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEachDocsInternos">
+            <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEachDocsInternos" enabled="true">
               <stringProp name="ForeachController.inputVal">pesquisaNaUnidade_DocumentoInternoTermo</stringProp>
               <stringProp name="ForeachController.returnVal">termo_pesquisar</stringProp>
               <boolProp name="ForeachController.useSeparator">true</boolProp>
@@ -11942,13 +11612,10 @@ for (j=1;j&lt;=dis.size(); j++){
               <hashTree>
                 <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PesquisarDoc" enabled="true"/>
                 <hashTree>
-                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Numero">
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Numero" enabled="true">
                     <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_frm_pesquisa}</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=protocolo_pesquisa_rapida&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_frm_pesquisa}</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -11998,11 +11665,8 @@ for (j=1;j&lt;=dis.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/VisualizarFrame" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -12101,11 +11765,8 @@ for (j=1;j&lt;=dis.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Visualizar Arvore" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -12177,11 +11838,8 @@ for (j=1;j&lt;=dis.size(); j++){
                     <hashTree/>
                   </hashTree>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Pesquisa/DocsInternos/Visualizar Doc" enabled="true">
-                    <stringProp name="HTTPSampler.domain">${host}</stringProp>
-                    <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-                    <stringProp name="HTTPSampler.path">/sei/controlador.php</stringProp>
+                    <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                     <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -12276,7 +11934,7 @@ for (j=1;j&lt;=dis.size(); j++){
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -12313,7 +11971,7 @@ for (j=1;j&lt;=dis.size(); j++){
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -12401,12 +12059,10 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
       </hashTree>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Login -SEI" enabled="true"/>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-          <stringProp name="HTTPSampler.domain">${host}</stringProp>
-          <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-          <stringProp name="HTTPSampler.path">/sei/</stringProp>
+          <stringProp name="HTTPSampler.domain">${host_sip}</stringProp>
+          <stringProp name="HTTPSampler.path">${path_prefix_sip}/</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -12447,13 +12103,11 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
           </XPathExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login/Efetuar" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login/Efetuar">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-          <stringProp name="HTTPSampler.domain">${host}</stringProp>
-          <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-          <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+          <stringProp name="HTTPSampler.domain">${host_sei}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-          <stringProp name="HTTPSampler.path">/sip/login.php?sigla_orgao_sistema=${siglaOrgaoSistema}&amp;sigla_sistema=SEI&amp;infra_url=L3NpcC8=</stringProp>
+          <stringProp name="HTTPSampler.path">${path_prefix_sip}/login.php?sigla_orgao_sistema=${siglaOrgaoSistema}&amp;sigla_sistema=SEI&amp;infra_url=L3NpcC8=</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>

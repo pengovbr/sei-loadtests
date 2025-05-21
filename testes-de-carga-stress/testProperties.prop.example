@@ -79,7 +79,11 @@ startupDelay_006=400
 # VALORES
 scheme=https
 host=localhost
+host_sip=localhost
+host_sei=localhost
 portinhola=443
+path_prefix_sip=/sip
+path_prefix_sei=/sei
 qtdUnidadesInicial=10
 usuarioAdminLogin=teste
 usuarioAdminSenha=teste
