@@ -395,7 +395,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
         <stringProp name="HTTPSampler.domain">${host_sei}</stringProp>
         <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
         <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -506,7 +506,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_001}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_001}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_001}</stringProp>
@@ -519,7 +519,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao"/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Preparacao" enabled="true"/>
         <hashTree>
           <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Preparacao" enabled="true">
             <stringProp name="scriptLanguage">groovy</stringProp>
@@ -575,12 +575,12 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Criar Processo">
+        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Transaction Criar Processo" enabled="true">
           <boolProp name="TransactionController.parent">true</boolProp>
           <boolProp name="TransactionController.includeTimers">false</boolProp>
         </TransactionController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.path">${path_prefix_sei}/</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -670,7 +670,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
               <hashTree/>
             </hashTree>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/CliqueIniciar">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/CliqueIniciar" enabled="true">
             <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -981,7 +981,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo" enabled="true">
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
             <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_escolher_tipo&amp;acao_origem=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1653,7 +1653,7 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Visualizar">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Visualizar" enabled="true">
             <stringProp name="TestPlan.comments">
 </stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -6192,7 +6192,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -12059,7 +12059,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
       </hashTree>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Login -SEI" enabled="true"/>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host_sip}</stringProp>
           <stringProp name="HTTPSampler.path">${path_prefix_sip}/</stringProp>
@@ -12103,7 +12103,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
           </XPathExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login/Efetuar">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login/Efetuar" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host_sei}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
