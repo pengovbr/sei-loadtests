@@ -1,12 +1,6 @@
-# Super Load Tests
+# SEI Load Tests
 
 ## Divisão
-
-Temos 3 Planos de Teste:
-
-- **CargaTestPlan-Assets.jmx**
-
-	Ignore-o pois vai ter que aguardar definição entre SEI vs Super
 
 - **CargaTestPlan.jmx**
 

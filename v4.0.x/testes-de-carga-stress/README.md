@@ -1,4 +1,4 @@
-# Super Load Tests
+# SEI Load Tests
 
 ## Divisão
 
