@@ -1,14 +1,7 @@
-# Super Load Tests
+# Testes para o SEI 4.0.x
 
-Projeto com scripts no jmeter para testes de carga e stress no Super.
+## Divisão dos Testes
 
-Testado em SEI 4.0.9 e Super 4.0.9.12
-Pode ser que funcione para outras versões. Um aspecto importante a se levar em conta é que a instalação de módulos pode acarretar falha nos testes caso mude as chamadas das requisições.
-
-
-## Divisão do Projeto
-
-O projeto atualmente está dividido em 3 partes independentes. Ao entrar em cada pasta existe um README específico:
 
 - **testes de carga e stress:** 
 	aqui ficam os testes em jmeter para fazer carga e stress nos ambientes
