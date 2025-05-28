@@ -2,16 +2,17 @@
 
 Projeto com scripts no jmeter para testes de carga e stress no SEI.
 
-Testado em SEI 4.0.9, 4.0.12, 4.0.12.15 e 4.1.5.
-Pode ser que funcione para outras versões. Um aspecto importante a se levar em conta é que a instalação de módulos pode acarretar falha nos testes caso mude as chamadas das requisições.
+Testado em SEI 4.0.9, 4.0.12, 4.0.12.15 e 4.1.5.  
+Pode ser que funcione para outras versões.  
+Um aspecto importante a se levar em conta é que a instalação de módulos pode acarretar falha nos testes caso mude as chamadas das requisições.
 
 
 ## Divisão do Projeto
 
-Primeiro escolha a versão do SEI selecionando a pasta correspondente.
+Primeiro escolha a versão do SEI selecionando a pasta correspondente.  
 **Na pasta selecionada, existe um readme com as orientações para rodar o teste.**
 
-O projeto atualmente está dividido em 3 partes independentes, separados por versão do SEI.
+O projeto atualmente está dividido em 3 partes independentes, separados por versão do SEI.  
 Ao entrar em cada pasta existe um README específico:
 
 - **testes de carga e stress:** 
