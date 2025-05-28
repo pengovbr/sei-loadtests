@@ -4,7 +4,7 @@
 
 
 - **testes de carga e stress:** 
-	aqui ficam os testes em jmeter para fazer carga e stress nos ambientes
+	aqui ficam os testes em jmeter para fazer carga e stress nos ambientes. Leia atentamente o Readme disponível dentro dessa seção para um teste com sucesso.
 	
 - **testes de monitoramento:**
 	aqui ficam testes em jmeter que ao implantar o sistema nos deparamos com alguma lentidão. Foram necessários para o profissional da sustentação identificar possíveis gargalos relacionados a nó de aplicação ou ingress.
