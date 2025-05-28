@@ -1,0 +1,116 @@
+####################################
+# propriedades do plano de execucao
+####################################
+
+# INSTRUCOES
+# para cada cenario defina:
+# - qtdUsers: usuarios simultaneos
+# - rampup: tempo para atingir essa qtd acima
+# - loopCount: repeticoes q cada usuario vai fazer nesse cenario
+# - threadDuration: Duracao em segundos que o cenario vai se manter rodando caso n acabe as repeticoes acima
+#- startupDelay: Duracao em segundos que o cenario vai esperar antes de iniciar (esperar cadastrar procs, por ex)
+
+# Cenario001
+qtdUsers_001=2
+rampup_001=30
+loopCount_001=5
+threadDuration_001=1200
+
+# Cenario002
+qtdUsers_002=5
+rampup_002=180
+loopCount_002=5
+threadDuration_002=1200
+startupDelay_002=180
+
+# Cenario003
+qtdUsers_003=2
+rampup_003=120
+loopCount_003=1
+threadDuration_003=1200
+startupDelay_003=180
+
+# Cenario004 - gerarpdf maior gargalo no app
+qtdUsers_004=2
+rampup_004=120
+loopCount_004=1
+threadDuration_004=1200
+startupDelay_004=180
+
+# Cenario005
+qtdUsers_005=2
+rampup_005=60
+loopCount_005=1
+threadDuration_005=1200
+startupDelay_005=180
+
+# Cenario006
+qtdUsers_006=5
+rampup_006=180
+loopCount_006=5
+threadDuration_006=1200
+startupDelay_006=400
+
+####################################
+# propriedades do ambiente
+####################################
+
+# INSTRUCOES
+# scheme:               http ou https
+# host:                 host do sistema
+# portinhola:           porta de conexao que o sistema responde: 80,443,8000 etc
+# qtdUnidadesInicial:   ao ser feita a pre carga sera criada essa qtd de unidades
+# --------------------  informe sempre multiplo de 5. A qtde de usuarios será esse x 20
+# usuarioAdminLogin
+# usuarioAdminSenha:    usuario e senha para precarga
+# idOrgao:              id do Orgao. Default geralmente 0 (zero), mas em algumas situacoes pode ter outro valor. Verifique o id na tela de login clicando com o botao direito e inspecionar no browser
+# siglaHierarquia:      sigla da Hierarquia. Geralmente SEI, mas caso sua hierarquiia seja outra pegue o sigla na tela do sip -- Hierarquias -- Montar
+
+# id_series_cadastro:   id dos tipos de docs q serao cadastrados. N passe qualquer tipo. Apenas tipos com 5 secoes (4 mais a assinatura) e a terceira secao editavel
+#                       na base de referencia temos 2 exemplos com esses modelos: ato e abertura de procedimento licitatorio (3 e 260 respectivamente)
+#                       escolha os tipos e separe-os com underline (_). O teste vai randomizar entre esses tipos informados durante a criacao dos docs
+# bolCadProc_selecionarInteressado: Informe se eh para selecionar contatos aleatorios como interessado no cadastro de processos. Abre a tela de interessados e pega aleatoriamente
+# CadProc_qtdDocsInternos: Qtd de Documentos Internos a serem criados durante o cadastro
+# CadProc_qtdDocsExternos:  Coloque no dir upload_files, os pdfs com tamanhos variados, o teste rancomiza de   sobe aleatorio
+# bolKeepRuntimeAssets:     mantem os arquivos de runtime salvos mesmo depois do teste ser parado ou acabar. Isso para permitir rodar o cenario 002 a 006 isoladamente
+#-------                    cenario006 precisa de um tempo para pesquisar no solr. Pois precisa de procs criados a pelo menos 300segs para indexar
+# bolRodarAssets: deixe false ate segunda ordem aguardando definicao sei vs super. Caso o valor seja true, entao vai enviar para o teste, alem dos phps, os assets, js, css, gif, etc. Caso queira estressar o servico de cache entao desabilite o Http Cache Manager.
+
+# VALORES
+scheme=https
+host=localhost
+portinhola=443
+qtdUnidadesInicial=10
+usuarioAdminLogin=teste
+usuarioAdminSenha=teste
+idOrgao=0
+siglaHierarquia=SEI
+id_series_cadastro=3_260
+bolCadProc_selecionarInteressado=false
+CadProc_qtdDocsInternos=2
+CadProc_qtdDocsExternos=2
+bolKeepRuntimeAssets=false
+bolRodarAssets=false
+bolThinkTimeEnable=true
+tk_cenario001_geral_fixo=2000
+tk_cenario001_geral_variavel=4000
+tk_cenario001_DocInternoEdit1_fixo=1000
+tk_cenario001_DocInternoEdit1_variavel=6000
+tk_cenario001_DocInternoEdit2_fixo=10000
+tk_cenario001_DocInternoEdit2_variavel=10000
+tk_cenario002_geral_fixo=2000
+tk_cenario002_geral_variavel=4000
+tk_cenario002_lerdocinterno_fixo=2000
+tk_cenario002_lerdocinterno_variavel=15000
+tk_cenario002_lerdocexterno_fixo=2000
+tk_cenario002_lerdocexterno_variavel=15000
+tk_cenario003_geral_fixo=4000
+tk_cenario003_geral_variavel=2000
+tk_cenario004_geral_fixo=2000
+tk_cenario004_geral_variavel=4000
+tk_cenario005_geral_fixo=4000
+tk_cenario005_geral_variavel=6000
+tk_cenario006_geral_fixo=4000
+tk_cenario006_geral_variavel=6000
+tk_cenario006_lerdocinterno_fixo=2000
+tk_cenario006_lerdocinterno_variavel=15000
