@@ -1,21 +1,25 @@
-# Super Load Tests
+# SEI Load Tests
 
-Projeto com scripts no jmeter para testes de carga e stress no Super.
+Projeto com scripts no jmeter para testes de carga e stress no SEI.
 
-Testado em SEI 4.0.9 e Super 4.0.9.12
+Testado em SEI 4.0.9, 4.0.12, 4.0.12.15 e 4.1.5.
 Pode ser que funcione para outras versões. Um aspecto importante a se levar em conta é que a instalação de módulos pode acarretar falha nos testes caso mude as chamadas das requisições.
 
 
 ## Divisão do Projeto
 
-O projeto atualmente está dividido em 3 partes independentes. Ao entrar em cada pasta existe um README específico:
+Primeiro escolha a versão do SEI selecionando a pasta correspondente.
+**Na pasta selecionada, existe um readme com as orientações para rodar o teste.**
+
+O projeto atualmente está dividido em 3 partes independentes, separados por versão do SEI.
+Ao entrar em cada pasta existe um README específico:
 
 - **testes de carga e stress:** 
-	aqui ficam os testes em jmeter para fazer carga e stress nos ambientes
+	aqui ficam os testes em jmeter para fazer carga e stress nos ambientes, abordando diversos cenários de uso do SEI.
 	
 - **testes de monitoramento:**
 	aqui ficam testes em jmeter que ao implantar o sistema nos deparamos com alguma lentidão. Foram necessários para o profissional da sustentação identificar possíveis gargalos relacionados a nó de aplicação ou ingress.
-	Apenas SEI4.
+	Apenas SEI4.0.x.
 
 	- **monitoramento-cookies-nagios:**
 		esse teste faz inicialmente um apanhado dos cookies ofertados pela url com o  intuito de levantar os possíveis nós(ou pods) de entrada possíveis. Depois disso faz uma chamada ao sistema, logando com o usuário robô disponibilizado, e faz algumas operações simples para informar se o sistema está no ar.
