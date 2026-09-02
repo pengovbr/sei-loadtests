@@ -7,6 +7,7 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -65,7 +66,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
         <stringProp name="HTTPSampler.domain">${host}</stringProp>
         <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
         <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -75,17 +76,17 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
         <collectionProp name="CookieManager.cookies"/>
         <boolProp name="CookieManager.clearEachIteration">true</boolProp>
         <boolProp name="CookieManager.controlledByThreadGroup">true</boolProp>
       </CookieManager>
       <hashTree/>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
         <collectionProp name="HeaderManager.headers"/>
       </HeaderManager>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Iniciar">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Iniciar" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -96,7 +97,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -156,7 +157,7 @@ fileContents.eachLine { line -&gt;
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga Inicial Usuarios" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga Inicial Usuarios" enabled="true">
         <intProp name="ThreadGroup.num_threads">5</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -167,7 +168,7 @@ fileContents.eachLine { line -&gt;
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters">
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
           <collectionProp name="UserParameters.names">
             <stringProp name="525370246">user.login</stringProp>
             <stringProp name="294148180">user.pass</stringProp>
@@ -181,7 +182,7 @@ fileContents.eachLine { line -&gt;
           <boolProp name="UserParameters.per_iteration">false</boolProp>
         </UserParameters>
         <hashTree/>
-        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Login">
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Login" enabled="true">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="764597751">Test Plan</stringProp>
             <stringProp name="764597751">Test Plan</stringProp>
@@ -189,12 +190,12 @@ fileContents.eachLine { line -&gt;
           </collectionProp>
         </ModuleController>
         <hashTree/>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${__property(propQtdUsuariosLoop)}</stringProp>
         </LoopController>
         <hashTree>
-          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Carga de Usuários">
+          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Carga de Usuários" enabled="true">
             <collectionProp name="ModuleController.node_path">
               <stringProp name="764597751">Test Plan</stringProp>
               <stringProp name="764597751">Test Plan</stringProp>
@@ -203,7 +204,7 @@ fileContents.eachLine { line -&gt;
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -241,7 +242,7 @@ fileContents.eachLine { line -&gt;
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga de Unidades" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga de Unidades" enabled="true">
         <intProp name="ThreadGroup.num_threads">5</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -288,7 +289,7 @@ fileContents.eachLine { line -&gt;
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -326,7 +327,7 @@ fileContents.eachLine { line -&gt;
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga de Hierarquia de Unidades" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga de Hierarquia de Unidades" enabled="true">
         <intProp name="ThreadGroup.num_threads">5</intProp>
         <intProp name="ThreadGroup.ramp_time">10</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -359,12 +360,12 @@ fileContents.eachLine { line -&gt;
           </collectionProp>
         </ModuleController>
         <hashTree/>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${__property(propQtdUnidadesLoop)}</stringProp>
         </LoopController>
         <hashTree>
-          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Carga de Hierarquia de Unidades">
+          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Carga de Hierarquia de Unidades" enabled="true">
             <collectionProp name="ModuleController.node_path">
               <stringProp name="764597751">Test Plan</stringProp>
               <stringProp name="764597751">Test Plan</stringProp>
@@ -373,7 +374,7 @@ fileContents.eachLine { line -&gt;
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -411,7 +412,7 @@ fileContents.eachLine { line -&gt;
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga de Permissão de Usuários" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga de Permissão de Usuários" enabled="true">
         <intProp name="ThreadGroup.num_threads">5</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -422,7 +423,7 @@ fileContents.eachLine { line -&gt;
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -461,7 +462,7 @@ fileContents.eachLine { line -&gt;
 </stringProp>
         </JSR223Sampler>
         <hashTree/>
-        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters">
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
           <collectionProp name="UserParameters.names">
             <stringProp name="525370246">user.login</stringProp>
             <stringProp name="294148180">user.pass</stringProp>
@@ -475,7 +476,7 @@ fileContents.eachLine { line -&gt;
           <boolProp name="UserParameters.per_iteration">false</boolProp>
         </UserParameters>
         <hashTree/>
-        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Login">
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Login" enabled="true">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="764597751">Test Plan</stringProp>
             <stringProp name="764597751">Test Plan</stringProp>
@@ -483,12 +484,12 @@ fileContents.eachLine { line -&gt;
           </collectionProp>
         </ModuleController>
         <hashTree/>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${__property(propQtdUnidadesLoop)}</stringProp>
         </LoopController>
         <hashTree>
-          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Carga de Permissões de Usuários">
+          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Carga de Permissões de Usuários" enabled="true">
             <collectionProp name="ModuleController.node_path">
               <stringProp name="764597751">Test Plan</stringProp>
               <stringProp name="764597751">Test Plan</stringProp>
@@ -497,7 +498,7 @@ fileContents.eachLine { line -&gt;
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -535,7 +536,7 @@ fileContents.eachLine { line -&gt;
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SEI - Unidade Configurar Numero" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SEI - Unidade Configurar Numero">
         <intProp name="ThreadGroup.num_threads">5</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -568,12 +569,12 @@ fileContents.eachLine { line -&gt;
           </collectionProp>
         </ModuleController>
         <hashTree/>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${__property(propQtdUnidadesLoop)}</stringProp>
         </LoopController>
         <hashTree>
-          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Unidade Configurar">
+          <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="MC - Unidade Configurar" enabled="true">
             <collectionProp name="ModuleController.node_path">
               <stringProp name="764597751">Test Plan</stringProp>
               <stringProp name="764597751">Test Plan</stringProp>
@@ -582,7 +583,7 @@ fileContents.eachLine { line -&gt;
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -667,7 +668,7 @@ fileContents.eachLine { line -&gt;
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -932,7 +933,7 @@ fileContents.eachLine { line -&gt;
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Carga de Usuários"/>
+      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Carga de Usuários" enabled="true"/>
       <hashTree>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
           <stringProp name="delimiter">,</stringProp>
@@ -1010,7 +1011,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-573">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-573" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -1072,7 +1073,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php?acao=usuario_cadastrar&amp;acao_origem=usuario_cadastrar&amp;infra_sistema=100000099&amp;infra_unidade_atual=110000001&amp;infra_hash=ff8fabb8eb486e8bc64d166faf360d8435cbbc192a59e35df4ed2873d03c9575-673">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php?acao=usuario_cadastrar&amp;acao_origem=usuario_cadastrar&amp;infra_sistema=100000099&amp;infra_unidade_atual=110000001&amp;infra_hash=ff8fabb8eb486e8bc64d166faf360d8435cbbc192a59e35df4ed2873d03c9575-673" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -1397,7 +1398,7 @@ fileContents.eachLine { line -&gt;
           <hashTree/>
         </hashTree>
       </hashTree>
-      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Carga de Hierarquia de Unidades"/>
+      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Carga de Hierarquia de Unidades" enabled="true"/>
       <hashTree>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
           <stringProp name="filename">assets/unidades.csv</stringProp>
@@ -1411,7 +1412,7 @@ fileContents.eachLine { line -&gt;
           <stringProp name="shareMode">shareMode.group</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/-527">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/-527" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -1475,7 +1476,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-815">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-815" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -1550,7 +1551,7 @@ fileContents.eachLine { line -&gt;
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -1644,7 +1645,7 @@ fileContents.eachLine { line -&gt;
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-816 ">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-816 " enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -1778,13 +1779,13 @@ fileContents.eachLine { line -&gt;
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller" enabled="true">
           <stringProp name="IfController.condition">${__groovy(&quot;${idUnidade}&quot; != &quot;0&quot;)}</stringProp>
           <boolProp name="IfController.evaluateAll">false</boolProp>
           <boolProp name="IfController.useExpression">true</boolProp>
         </IfController>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/rel_hierarquia_unidade_cadastro.php?acao=rel_hierarquia_unidade_cadastrar&amp;acao_origem=rel_hierarquia_unidade_cadastrar&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=1f2e32f790b97fd29008cd0a7748df27d0e7c7c9c1e71b68000ae9becfc6d875-819">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/rel_hierarquia_unidade_cadastro.php?acao=rel_hierarquia_unidade_cadastrar&amp;acao_origem=rel_hierarquia_unidade_cadastrar&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=1f2e32f790b97fd29008cd0a7748df27d0e7c7c9c1e71b68000ae9becfc6d875-819" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.domain">${host}</stringProp>
             <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -1908,7 +1909,7 @@ fileContents.eachLine { line -&gt;
       </hashTree>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Carga de Permissões de Usuários" enabled="true"/>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
           <stringProp name="filename">assets/unidades.csv</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="variableNames">unidadesigla,unidadenome</stringProp>
@@ -1920,7 +1921,7 @@ fileContents.eachLine { line -&gt;
           <stringProp name="shareMode">shareMode.group</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/-527">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/-527" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -1984,7 +1985,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-13">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador.php-13" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2085,7 +2086,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador_ajax.php?acao_ajax=unidade_montar_select_sigla_autorizadas&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=6f8861950e92e5344a3bfe02a91e8f9af3651a7c5c6fbd5b15119bca959696a1-16">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador_ajax.php?acao_ajax=unidade_montar_select_sigla_autorizadas&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=6f8861950e92e5344a3bfe02a91e8f9af3651a7c5c6fbd5b15119bca959696a1-16" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2147,7 +2148,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador_ajax.php?acao_ajax=perfil_montar_select_sigla_autorizados&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=1e74c4ccaf2d0804d5582fa835c15f8ad9f75421f78cdbcfaded9d7ce73786f0-23">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador_ajax.php?acao_ajax=perfil_montar_select_sigla_autorizados&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=1e74c4ccaf2d0804d5582fa835c15f8ad9f75421f78cdbcfaded9d7ce73786f0-23" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2208,7 +2209,7 @@ fileContents.eachLine { line -&gt;
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler1">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler1" enabled="true">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -2298,7 +2299,7 @@ vars.put(&quot;usuarionome&quot;, l[1])
 vars.put(&quot;cpf&quot;, l[2]) </stringProp>
             </JSR223Sampler>
             <hashTree/>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador_ajax.php?acao_ajax=usuario_auto_completar_sigla_nome&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=8f4b6fc3aff09c2f80db691e537949387474664ccd0768cc889f30254cd27b8f-24">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/controlador_ajax.php?acao_ajax=usuario_auto_completar_sigla_nome&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=8f4b6fc3aff09c2f80db691e537949387474664ccd0768cc889f30254cd27b8f-24" enabled="true">
               <stringProp name="HTTPSampler.domain">${host}</stringProp>
               <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
               <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2339,7 +2340,7 @@ vars.put(&quot;cpf&quot;, l[2]) </stringProp>
               </RegexExtractor>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/permissao_cadastro.php?acao=permissao_cadastrar&amp;acao_origem=permissao_cadastrar&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=fc1622ed34bca2b997f490c77933cfce3b5af0da6373442137959624bac4ca08-25">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sip/permissao_cadastro.php?acao=permissao_cadastrar&amp;acao_origem=permissao_cadastrar&amp;infra_sistema=${qtdUnidadesInicial}0000099&amp;infra_unidade_atual=1${qtdUnidadesInicial}000001&amp;infra_hash=fc1622ed34bca2b997f490c77933cfce3b5af0da6373442137959624bac4ca08-25" enabled="true">
               <stringProp name="HTTPSampler.domain">${host}</stringProp>
               <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
               <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2621,7 +2622,7 @@ vars.put(&quot;cpf&quot;, l[2]) </stringProp>
       </hashTree>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - SEI - Unidade Configurar Numero"/>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
           <stringProp name="filename">assets/unidades.csv</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="variableNames">unidadesigla,unidadenome</stringProp>
@@ -2633,7 +2634,7 @@ vars.put(&quot;cpf&quot;, l[2]) </stringProp>
           <stringProp name="shareMode">shareMode.group</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
           <stringProp name="scriptLanguage">groovy</stringProp>
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
@@ -2645,7 +2646,7 @@ us = us.replace(&quot;unidade&quot;, &quot;&quot;)
 vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
         </JSR223Sampler>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei/-527">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/sei/-527" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -2709,7 +2710,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ListarUnidades">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ListarUnidades" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2771,7 +2772,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pesquisarunidade">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pesquisarunidade" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -2865,7 +2866,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="cliquealterar">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="cliquealterar" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -2971,7 +2972,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           </RegexExtractor>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Clique Alterar Contato">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Clique Alterar Contato" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -3139,7 +3140,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Contato">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Contato" enabled="true">
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
           <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
@@ -3425,7 +3426,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="cliquesalvar ${unidadesigla}">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="cliquesalvar ${unidadesigla}" enabled="true">
           <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
           <stringProp name="HTTPSampler.domain">${host}</stringProp>
           <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
@@ -3552,7 +3553,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Assinatura da Unidade" enabled="true"/>
+      <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="TF - Assinatura da Unidade"/>
       <hashTree>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
           <stringProp name="filename">assets/unidades.csv</stringProp>
@@ -3691,7 +3692,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
             <intProp name="Assertion.test_type">16</intProp>
           </ResponseAssertion>
           <hashTree/>
-          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
             <stringProp name="RegexExtractor.useHeaders">false</stringProp>
             <stringProp name="RegexExtractor.refname">id_assinante_hash</stringProp>
             <stringProp name="RegexExtractor.regex">id_assinante=(.*?)&amp;.*infra_hash=(.*?)&quot;</stringProp>
@@ -3701,7 +3702,7 @@ vars.put(&quot;numeroSeiUnidade&quot;, &quot;&quot; + us)</stringProp>
             <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
           </RegexExtractor>
           <hashTree/>
-          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
             <stringProp name="RegexExtractor.useHeaders">false</stringProp>
             <stringProp name="RegexExtractor.refname">arrCargoNome</stringProp>
             <stringProp name="RegexExtractor.regex">&lt;td  data-label=&quot;Cargo / Função&quot;&gt;(.*?)&lt;/td&gt;</stringProp>
@@ -3813,7 +3814,7 @@ vars.put(&quot;cargonome&quot;, cargo)
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="1275027371">Alterar Assinatura de Unidade</stringProp>
               </collectionProp>
@@ -3823,7 +3824,7 @@ vars.put(&quot;cargonome&quot;, cargo)
               <intProp name="Assertion.test_type">16</intProp>
             </ResponseAssertion>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">infra_hash_ajax</stringProp>
               <stringProp name="RegexExtractor.regex">controlador_ajax.php.*infra_hash=(.*?)&apos;</stringProp>
@@ -3833,7 +3834,7 @@ vars.put(&quot;cargonome&quot;, cargo)
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
             </RegexExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">infra_hash</stringProp>
               <stringProp name="RegexExtractor.regex">frmAssinanteCadastro.*acao=assinante_alterar.*infra_hash=(.*?)&quot;</stringProp>
@@ -3843,7 +3844,7 @@ vars.put(&quot;cargonome&quot;, cargo)
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
             </RegexExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">hdnIdAssinante</stringProp>
               <stringProp name="RegexExtractor.regex">input.*hdnIdAssinante.*value=&quot;(.*?)&quot;</stringProp>
@@ -3853,7 +3854,7 @@ vars.put(&quot;cargonome&quot;, cargo)
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
             </RegexExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">hdnUnidadesold</stringProp>
               <stringProp name="RegexExtractor.regex">option value=&quot;([0-9]+)&quot;(?:.*)&gt;(.*?)&lt;/option&gt;</stringProp>
@@ -3863,7 +3864,7 @@ vars.put(&quot;cargonome&quot;, cargo)
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
             </RegexExtractor>
             <hashTree/>
-            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor" enabled="true">
+            <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor">
               <stringProp name="XPathExtractor.default"></stringProp>
               <stringProp name="XPathExtractor.refname">hdnUnidades</stringProp>
               <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
@@ -3873,64 +3874,80 @@ vars.put(&quot;cargonome&quot;, cargo)
               <boolProp name="XPathExtractor.namespace">false</boolProp>
             </XPathExtractor>
             <hashTree/>
-          </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Consultar Unidade ${unidadesigla}">
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador_ajax.php?acao_ajax=unidade_auto_completar_todas&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_ajax}</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="palavras_pesquisa" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">palavras_pesquisa</stringProp>
-                  <stringProp name="Argument.value">${unidadesigla}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="id_orgao" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">id_orgao</stringProp>
-                  <stringProp name="Argument.value">${idOrgao}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
-              <collectionProp name="Asserion.test_strings">
-                <stringProp name="1175968757">item id=</stringProp>
-              </collectionProp>
-              <stringProp name="Assertion.custom_message"></stringProp>
-              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-              <boolProp name="Assertion.assume_success">false</boolProp>
-              <intProp name="Assertion.test_type">16</intProp>
-            </ResponseAssertion>
-            <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
-              <stringProp name="RegexExtractor.refname">arrUnidade</stringProp>
-              <stringProp name="RegexExtractor.regex">item id=&quot;(.*?)&quot; descricao=&quot;(.*?)&quot;</stringProp>
-              <stringProp name="RegexExtractor.template">$1$$2$</stringProp>
-              <stringProp name="RegexExtractor.default"></stringProp>
-              <stringProp name="RegexExtractor.match_number">1</stringProp>
+              <stringProp name="RegexExtractor.refname">unidade_cadastrada</stringProp>
+              <stringProp name="RegexExtractor.regex">${unidadesigla} - </stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">true</stringProp>
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler ${arrUnidade_g2}">
-            <stringProp name="scriptLanguage">groovy</stringProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">a = vars.get(&quot;hdnUnidades_matchNr&quot;).toInteger()
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Controller">
+            <stringProp name="IfController.condition">${__groovy( vars.get(&quot;unidade_cadastrada&quot;) == &quot;true&quot; )}</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+            <boolProp name="IfController.useExpression">true</boolProp>
+          </IfController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Consultar Unidade ${unidadesigla}">
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
+              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
+              <stringProp name="HTTPSampler.path">/sei/controlador_ajax.php?acao_ajax=unidade_auto_completar_todas&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_ajax}</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="palavras_pesquisa" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">palavras_pesquisa</stringProp>
+                    <stringProp name="Argument.value">${unidadesigla}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="id_orgao" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">id_orgao</stringProp>
+                    <stringProp name="Argument.value">${idOrgao}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="1175968757">item id=</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.custom_message"></stringProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">16</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">arrUnidade</stringProp>
+                <stringProp name="RegexExtractor.regex">item id=&quot;(.*?)&quot; descricao=&quot;(.*?)&quot;</stringProp>
+                <stringProp name="RegexExtractor.template">$1$$2$</stringProp>
+                <stringProp name="RegexExtractor.default"></stringProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler ${arrUnidade_g2}">
+              <stringProp name="scriptLanguage">groovy</stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="script">a = vars.get(&quot;hdnUnidades_matchNr&quot;).toInteger()
 
 hdnUnidades = &quot;&quot;
 
@@ -3957,88 +3974,89 @@ vars.put(&quot;hdnUnidades&quot;, hdnUnidades )
 
 //log.info(&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot; + hdnUnidades)
 </stringProp>
-          </JSR223Sampler>
-          <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Assinatura Unidade ${unidadesigla}">
-            <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
-            <stringProp name="HTTPSampler.domain">${host}</stringProp>
-            <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
-            <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
-            <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=assinante_alterar&amp;acao_origem=assinante_alterar&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
-              <collectionProp name="Arguments.arguments">
-                <elementProp name="hdnInfraTipoPagina" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">hdnInfraTipoPagina</stringProp>
-                  <stringProp name="Argument.value">1</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="sbmAlterarAssinante" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">sbmAlterarAssinante</stringProp>
-                  <stringProp name="Argument.value">Salvar</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="txtCargoFuncao" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">txtCargoFuncao</stringProp>
-                  <stringProp name="Argument.value">${cargonome}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="txtUnidade" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">txtUnidade</stringProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="hdnIdUnidade" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">hdnIdUnidade</stringProp>
-                  <stringProp name="Argument.value"></stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="selUnidades" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">selUnidades</stringProp>
-                  <stringProp name="Argument.value">${arrUnidade_g1}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="hdnIdAssinante" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">hdnIdAssinante</stringProp>
-                  <stringProp name="Argument.value">${hdnIdAssinante}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="hdnIdOrgao" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.name">hdnIdOrgao</stringProp>
-                  <stringProp name="Argument.value">${idOrgao}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-                <elementProp name="hdnUnidades" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                  <stringProp name="Argument.name">hdnUnidades</stringProp>
-                  <stringProp name="Argument.value">${hdnUnidades}</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                </elementProp>
-              </collectionProp>
-            </elementProp>
-          </HTTPSamplerProxy>
-          <hashTree/>
+            </JSR223Sampler>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Salvar Assinatura Unidade ${unidadesigla}">
+              <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+              <stringProp name="HTTPSampler.domain">${host}</stringProp>
+              <stringProp name="HTTPSampler.port">${portinhola}</stringProp>
+              <stringProp name="HTTPSampler.protocol">${scheme}</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
+              <stringProp name="HTTPSampler.path">/sei/controlador.php?acao=assinante_alterar&amp;acao_origem=assinante_alterar&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="hdnInfraTipoPagina" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">hdnInfraTipoPagina</stringProp>
+                    <stringProp name="Argument.value">1</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="sbmAlterarAssinante" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">sbmAlterarAssinante</stringProp>
+                    <stringProp name="Argument.value">Salvar</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="txtCargoFuncao" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                    <stringProp name="Argument.name">txtCargoFuncao</stringProp>
+                    <stringProp name="Argument.value">${cargonome}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="txtUnidade" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">txtUnidade</stringProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="hdnIdUnidade" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">hdnIdUnidade</stringProp>
+                    <stringProp name="Argument.value"></stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="selUnidades" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">selUnidades</stringProp>
+                    <stringProp name="Argument.value">${arrUnidade_g1}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="hdnIdAssinante" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">hdnIdAssinante</stringProp>
+                    <stringProp name="Argument.value">${hdnIdAssinante}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="hdnIdOrgao" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">hdnIdOrgao</stringProp>
+                    <stringProp name="Argument.value">${idOrgao}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="hdnUnidades" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                    <stringProp name="Argument.name">hdnUnidades</stringProp>
+                    <stringProp name="Argument.value">${hdnUnidades}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+          </hashTree>
         </hashTree>
       </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
