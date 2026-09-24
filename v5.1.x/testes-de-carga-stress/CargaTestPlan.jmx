@@ -506,7 +506,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_001}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_001}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_001}</stringProp>
@@ -543,7 +543,8 @@ user[1] = &quot;usuario&quot; + v.toString().padLeft(5, &quot;0&quot;)
 usuario = user.get(rand.nextInt(user.size()))
 
 
-vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
+vars.put(&quot;usuariosigla&quot;, usuario)
+</stringProp>
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
@@ -1403,7 +1404,7 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Salvar" enabled="true">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
-            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;acao_retorno=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -1895,7 +1896,7 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Docs Internos" enabled="true">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Docs Internos">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${CadProc_qtdDocsInternos}</stringProp>
         </LoopController>
@@ -3018,7 +3019,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
               <hashTree>
                 <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
                   <collectionProp name="Asserion.test_strings">
-                    <stringProp name="1459781102">frmEditor</stringProp>
+                    <stringProp name="-1298842873">window.INFRA_EDITOR_CONFIG</stringProp>
                   </collectionProp>
                   <stringProp name="Assertion.custom_message"></stringProp>
                   <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
@@ -3160,7 +3161,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
               <hashTree>
                 <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
                   <collectionProp name="Asserion.test_strings">
-                    <stringProp name="590720752">hdnVersao</stringProp>
+                    <stringProp name="-1298842873">window.INFRA_EDITOR_CONFIG</stringProp>
                   </collectionProp>
                   <stringProp name="Assertion.custom_message"></stringProp>
                   <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
@@ -3171,7 +3172,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">infra_hash</stringProp>
-                  <stringProp name="RegexExtractor.regex">controlador_ajax.php.*acao_ajax=corfirmacao_atualizacao_documento&amp;id_documento=.*infra_hash=(.*?)&apos;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&quot;urlConfirmarAtualizacao&quot;:&quot;controlador_ajax.php\?id_documento=.*&amp;acao_ajax=corfirmacao_atualizacao_documento.*&amp;infra_hash=(.*?)&quot;,&quot;urlSalvar&quot;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default"></stringProp>
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
@@ -3181,14 +3182,14 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">infra_hash_editor_salvar</stringProp>
-                  <stringProp name="RegexExtractor.regex">editor_processar.php.*acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=.*infra_hash=(.*?)&quot;</stringProp>
+                  <stringProp name="RegexExtractor.regex">&quot;urlSalvar&quot;:&quot;controlador_rest.php\?id_documento=.*&amp;acao_rest=editor_salvar_conteudo&amp;.*&amp;infra_hash=(.*?)&quot;,&quot;atualizarArvoreAoIniciar&quot;</stringProp>
                   <stringProp name="RegexExtractor.template">$1$</stringProp>
                   <stringProp name="RegexExtractor.default"></stringProp>
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
                   <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">hdnPrefixoCookie</stringProp>
                   <stringProp name="RegexExtractor.regex">input type=&quot;hidden&quot; id=&quot;hdnInfraPrefixoCookie&quot; name=&quot;hdnInfraPrefixoCookie&quot; value=&quot;(.*?)&quot;</stringProp>
@@ -3198,7 +3199,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">hdnSiglaUnidade</stringProp>
                   <stringProp name="RegexExtractor.regex">input type=&quot;hidden&quot; id=&quot;hdnSiglaUnidade&quot; name=&quot;hdnSiglaUnidade&quot; value=&quot;(.*?)&quot;</stringProp>
@@ -3212,11 +3213,37 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <stringProp name="XPathExtractor.default"></stringProp>
                   <stringProp name="XPathExtractor.refname">txaEditors</stringProp>
                   <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
-                  <stringProp name="XPathExtractor.xpathQuery">//textarea | //textarea/@name</stringProp>
+                  <stringProp name="XPathExtractor.xpathQuery">//div | //div/@id</stringProp>
                   <boolProp name="XPathExtractor.validate">false</boolProp>
                   <boolProp name="XPathExtractor.tolerant">true</boolProp>
                   <boolProp name="XPathExtractor.namespace">false</boolProp>
                 </XPathExtractor>
+                <hashTree/>
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+                  <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                  <stringProp name="RegexExtractor.refname">jsonSections</stringProp>
+                  <stringProp name="RegexExtractor.regex">&quot;initialData&quot;:(.*?),&quot;root</stringProp>
+                  <stringProp name="RegexExtractor.template">$1$</stringProp>
+                  <stringProp name="RegexExtractor.default"></stringProp>
+                  <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+                  <stringProp name="RegexExtractor.match_number">1</stringProp>
+                </RegexExtractor>
+                <hashTree/>
+                <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="JSON JMESPath Extractor" enabled="true">
+                  <stringProp name="JMESExtractor.referenceName">jsonSectionsKey</stringProp>
+                  <stringProp name="JMESExtractor.jmesPathExpr">keys(@)</stringProp>
+                  <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+                  <stringProp name="Sample.scope">variable</stringProp>
+                  <stringProp name="Scope.variable">jsonSections</stringProp>
+                </JMESPathExtractor>
+                <hashTree/>
+                <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="JSON JMESPath Extractor" enabled="true">
+                  <stringProp name="JMESExtractor.referenceName">jsonSectionsValue</stringProp>
+                  <stringProp name="JMESExtractor.jmesPathExpr">*</stringProp>
+                  <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
+                  <stringProp name="Sample.scope">variable</stringProp>
+                  <stringProp name="Scope.variable">jsonSections</stringProp>
+                </JMESPathExtractor>
                 <hashTree/>
               </hashTree>
               <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
@@ -3224,7 +3251,8 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">
+                <stringProp name="script">import java.net.URLEncoder
+
 def montar(size){
 
 	char[] alphabeto = &quot;abcdefghijklmnopqrstuvwxyz0123456789&quot;.toCharArray();
@@ -3272,13 +3300,24 @@ sequencia_inicial = montar_texto_aleatorio(10)
 sequencia_final = montar_texto_aleatorio(10)
 
 
-secao_1_nome = vars.get(&quot;txaEditors_2&quot;)
-secao_2_nome = vars.get(&quot;txaEditors_4&quot;)
-secao_3_nome = vars.get(&quot;txaEditors_6&quot;)
-secao_4_nome = vars.get(&quot;txaEditors_8&quot;)
+secao_1_nome = vars.get(&quot;jsonSectionsKey_1&quot;)
+secao_2_nome = vars.get(&quot;jsonSectionsKey_2&quot;)
+secao_3_nome = vars.get(&quot;jsonSectionsKey_3&quot;)
+secao_4_nome = vars.get(&quot;jsonSectionsKey_4&quot;)
 
-secao_1_texto = vars.get(&quot;txaEditors_1&quot;)
-secao_2_texto = vars.get(&quot;txaEditors_3&quot;)
+secao_1_texto = vars.get(&quot;jsonSectionsValue_1&quot;)
+secao_2_texto = vars.get(&quot;jsonSectionsValue_2&quot;)
+secao_3_texto = vars.get(&quot;jsonSectionsValue_3&quot;)
+secao_4_texto = vars.get(&quot;jsonSectionsValue_4&quot;)
+
+//secao_1_texto = secao_1_texto.replace(&apos;&quot;&apos;, &apos;\\\&quot;&apos;)
+//log.info(&quot;aaaaaaaaaaaaaaaaaaaaaaaaa&quot; + secao_1_texto)
+
+
+secao_1_texto = URLEncoder.encode(secao_1_texto, &quot;UTF-8&quot;)
+secao_2_texto = URLEncoder.encode(secao_2_texto, &quot;UTF-8&quot;)
+//secao_3_texto = URLEncoder.encode(secao_3_texto, &quot;UTF-8&quot;)
+secao_4_texto = URLEncoder.encode(secao_4_texto, &quot;UTF-8&quot;)
 
 vars.put(&quot;secao_1_nome&quot;, secao_1_nome)
 vars.put(&quot;secao_2_nome&quot;, secao_2_nome)
@@ -3287,6 +3326,8 @@ vars.put(&quot;secao_4_nome&quot;, secao_4_nome)
 
 vars.put(&quot;secao_1_texto&quot;, secao_1_texto)
 vars.put(&quot;secao_2_texto&quot;, secao_2_texto)
+//vars.put(&quot;secao_3_texto&quot;, secao_3_texto)
+vars.put(&quot;secao_4_texto&quot;, secao_4_texto)
 //vars.put(&quot;secao_5_nome&quot;, secao_5_nome)
 //log.info(&quot;aaaaaaaaac&quot;)
 
@@ -3295,9 +3336,17 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
 
 </stringProp>
               </JSR223Sampler>
-              <hashTree/>
+              <hashTree>
+                <DebugPostProcessor guiclass="TestBeanGUI" testclass="DebugPostProcessor" testname="Debug PostProcessor" enabled="true">
+                  <boolProp name="displayJMeterProperties">false</boolProp>
+                  <boolProp name="displayJMeterVariables">true</boolProp>
+                  <boolProp name="displaySamplerProperties">true</boolProp>
+                  <boolProp name="displaySystemProperties">false</boolProp>
+                </DebugPostProcessor>
+                <hashTree/>
+              </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 1" enabled="true"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 1"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -3308,17 +3357,17 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
                   <collectionProp name="Arguments.arguments">
-                    <elementProp name="acao_ajax" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">acao_ajax</stringProp>
-                      <stringProp name="Argument.value">corfirmacao_atualizacao_documento</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
                     <elementProp name="id_documento" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.name">id_documento</stringProp>
                       <stringProp name="Argument.value">${id_documento}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    </elementProp>
+                    <elementProp name="acao_ajax" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.name">acao_ajax</stringProp>
+                      <stringProp name="Argument.value">corfirmacao_atualizacao_documento</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -3359,6 +3408,44 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <hashTree/>
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Salvar" enabled="true">
+                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_rest.php?id_documento=${id_documento}&amp;acao_rest=editor_salvar_conteudo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{&quot;secoesConteudo&quot;:[{&quot;nome&quot;:&quot;${secao_1_nome}&quot;,&quot;html&quot;:&quot;${secao_1_texto}&quot;},{&quot;nome&quot;:&quot;${secao_2_nome}&quot;,&quot;html&quot;:&quot;${secao_2_texto}&quot;},{&quot;nome&quot;:&quot;${secao_3_nome}&quot;,&quot;html&quot;:&quot;${secao_3_texto}&quot;},{&quot;nome&quot;:&quot;${secao_4_nome}&quot;,&quot;html&quot;:&quot;${secao_4_texto}&quot;}],&quot;ignorarNovaVersao&quot;:&quot;N&quot;,&quot;versao&quot;:&quot;1&quot;,&quot;comentarios&quot;:{&quot;itens&quot;:[],&quot;hashPosicoes&quot;:null}}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">Content-Type</stringProp>
+                      <stringProp name="Header.value">application/json</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="-310021517">comentariosAtualizados</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.custom_message"></stringProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">16</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Salvar" enabled="false">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                 <stringProp name="HTTPSampler.path">${path_prefix_sei}/editor/editor_processar.php?acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3531,7 +3618,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 2" enabled="true"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 2"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -3542,17 +3629,17 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
                 <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
                   <collectionProp name="Arguments.arguments">
-                    <elementProp name="acao_ajax" elementType="HTTPArgument">
-                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                      <stringProp name="Argument.name">acao_ajax</stringProp>
-                      <stringProp name="Argument.value">corfirmacao_atualizacao_documento</stringProp>
-                      <stringProp name="Argument.metadata">=</stringProp>
-                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                    </elementProp>
                     <elementProp name="id_documento" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.name">id_documento</stringProp>
                       <stringProp name="Argument.value">${id_documento}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                      <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    </elementProp>
+                    <elementProp name="acao_ajax" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.name">acao_ajax</stringProp>
+                      <stringProp name="Argument.value">corfirmacao_atualizacao_documento</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
@@ -3650,6 +3737,44 @@ vars.put(&quot;secao_3_texto&quot;, secao_3_texto + sequencia_pesquisa )
               </JSR223Sampler>
               <hashTree/>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Salvar" enabled="true">
+                <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_rest.php?id_documento=${id_documento}&amp;acao_rest=editor_salvar_conteudo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
+                <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                <stringProp name="HTTPSampler.method">POST</stringProp>
+                <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+                <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                  <collectionProp name="Arguments.arguments">
+                    <elementProp name="" elementType="HTTPArgument">
+                      <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                      <stringProp name="Argument.value">{&quot;secoesConteudo&quot;:[{&quot;nome&quot;:&quot;${secao_1_nome}&quot;,&quot;html&quot;:&quot;${secao_1_texto}&quot;},{&quot;nome&quot;:&quot;${secao_2_nome}&quot;,&quot;html&quot;:&quot;${secao_2_texto}&quot;},{&quot;nome&quot;:&quot;${secao_3_nome}&quot;,&quot;html&quot;:&quot;${secao_3_texto}&quot;},{&quot;nome&quot;:&quot;${secao_4_nome}&quot;,&quot;html&quot;:&quot;${secao_4_texto}&quot;}],&quot;ignorarNovaVersao&quot;:&quot;N&quot;,&quot;versao&quot;:&quot;2&quot;,&quot;comentarios&quot;:{&quot;itens&quot;:[],&quot;hashPosicoes&quot;:null}}</stringProp>
+                      <stringProp name="Argument.metadata">=</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </elementProp>
+              </HTTPSamplerProxy>
+              <hashTree>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">Content-Type</stringProp>
+                      <stringProp name="Header.value">application/json</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
+                <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                  <collectionProp name="Asserion.test_strings">
+                    <stringProp name="-310021517">comentariosAtualizados</stringProp>
+                  </collectionProp>
+                  <stringProp name="Assertion.custom_message"></stringProp>
+                  <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                  <boolProp name="Assertion.assume_success">false</boolProp>
+                  <intProp name="Assertion.test_type">16</intProp>
+                </ResponseAssertion>
+                <hashTree/>
+              </hashTree>
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Salvar" enabled="false">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                 <stringProp name="HTTPSampler.path">${path_prefix_sei}/editor/editor_processar.php?acao=editor_salvar&amp;acao_origem=editor_montar&amp;id_procedimento=${id_procedimento}&amp;id_documento=${id_documento}&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3859,7 +3984,7 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Assinar" enabled="true"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Assinar"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/Clique em Assinar" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -4439,7 +4564,7 @@ vars.put(&quot;cadProcQtdDocs&quot;, &quot;0&quot;)
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Docs Externos" enabled="true">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Docs Externos">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${CadProc_qtdDocsExternos}</stringProp>
         </LoopController>
@@ -6267,7 +6392,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_002}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_002}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_002}</stringProp>
@@ -7848,7 +7973,7 @@ for (j=1;j&lt;=dex.size(); j++){
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_003}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_003}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_003}</stringProp>
@@ -8810,7 +8935,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_004}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_004}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_004}</stringProp>
@@ -10514,7 +10639,7 @@ vars.put(&quot;chkItemArray&quot;, v)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_005}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_005}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_005}</stringProp>
