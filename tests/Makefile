@@ -4,40 +4,36 @@ MAKEFILE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 SCRIPTS_DIR := $(MAKEFILE_DIR)assets/scripts
 ENVS_DIR := $(MAKEFILE_DIR)assets/envs-props
 
-SEI_DOCKER_DOWNLOAD ?= true
 SEI_DOCKER_GIT_URL ?= https://github.com/pengovbr/sei-docker
 SEI_DOCKER_LOCATION ?= $(MAKEFILE_DIR)assets/repos/sei-docker
 SEI_DOCKER_LOCATION_INFRA ?= $(SEI_DOCKER_LOCATION)/infra
 
-SEI_FONTES_DOWNLOAD ?= true
 SEI_FONTES_REPO ?= https://github.com/pengovbr/sei
 SEI_FONTES_LOCATION ?= $(MAKEFILE_DIR)assets/repos/sei-fontes
 SEI_FONTES_CHECKOUT_VERSION ?= "4.0.12.15"
 
+tests: download-sei-docker download-sei-fontes sei-setup jmeter-run
 
 download-sei-docker:
-	@if [ "$(SEI_DOCKER_DOWNLOAD)" = "true" ]; then \
-	    if [ ! -d "$(SEI_DOCKER_LOCATION)" ] || [ $$(ls -A "$(SEI_DOCKER_LOCATION)" | wc -l) -eq 0 ]; then \
-			echo "Download do sei-docker de $(SEI_DOCKER_GIT_URL) para $(SEI_DOCKER_LOCATION)"; \
-			git clone --depth 1 $(SEI_DOCKER_GIT_URL) $(SEI_DOCKER_LOCATION); \
-		else \
-			echo "Já existe o sei-docker em $(SEI_DOCKER_LOCATION)"; \
-		fi; \
+	@if [ ! -d "$(SEI_DOCKER_LOCATION)" ] || [ $$(ls -A "$(SEI_DOCKER_LOCATION)" | wc -l) -eq 0 ]; then \
+		echo "Download do sei-docker de $(SEI_DOCKER_GIT_URL) para $(SEI_DOCKER_LOCATION)"; \
+		git clone --depth 1 $(SEI_DOCKER_GIT_URL) $(SEI_DOCKER_LOCATION); \
 	else \
-		echo "Skipping sei-docker download"; \
-	fi
+		echo "Já existe o sei-docker em $(SEI_DOCKER_LOCATION)"; \
+		echo "Pulando download"; \
+	fi;
+
 
 download-sei-fontes:
-	@if [ "$(SEI_FONTES_DOWNLOAD)" = "true" ]; then \
-		if [ ! -d "$(SEI_FONTES_LOCATION)" ] || [ $$(ls -A "$(SEI_FONTES_LOCATION)" | wc -l) -eq 0 ]; then \
-			echo "Downloading sei-fontes from $(SEI_FONTES_REPO) to $(SEI_FONTES_LOCATION)"; \
-			git clone $(SEI_FONTES_REPO) $(SEI_FONTES_LOCATION); \
-		else \
-			echo "Já existe o sei-fontes em $(SEI_FONTES_LOCATION)"; \
-		fi; \
+	@if [ ! -d "$(SEI_FONTES_LOCATION)" ] || [ $$(ls -A "$(SEI_FONTES_LOCATION)" | wc -l) -eq 0 ]; then \
+		echo "Downloading sei-fontes from $(SEI_FONTES_REPO) to $(SEI_FONTES_LOCATION)"; \
+		git clone $(SEI_FONTES_REPO) $(SEI_FONTES_LOCATION); \
+		git -C $(SEI_FONTES_LOCATION) checkout $(SEI_FONTES_CHECKOUT_VERSION); \
 	else \
-		echo "Skipping sei-fontes download"; \
-	fi
+		echo "Já existe o sei-fontes em $(SEI_FONTES_LOCATION)"; \
+		echo "Pulando download e checkout"; \
+	fi;
+
 
 sei-destroy:
 	echo "Destruindo e limpando volumes ..."; \
@@ -52,9 +48,5 @@ sei-setup:
 jmeter-run:
 	@echo "Running jmeter tests..."
 	$(SCRIPTS_DIR)/jmeterRun.sh $(SEI_FONTES_LOCATION) $(ENVS_DIR)
-
-test:
-	@echo "Running tests... $(MAKEFILE_DIR)"
-	@echo "Running tests... $(SEI_DOCKER_GIT_URL)"
 
 
