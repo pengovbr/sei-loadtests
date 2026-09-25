@@ -40,5 +40,5 @@ jobs:
           ls -lh sei-loadtests/tests/assets/repos/
           echo "teste2"
           ls -lh sei-loadtests/tests/assets/repos/sei-fontes
-          cd tests
+          cd sei-loadtests/tests
           make sei-setup && make jmeter-run
