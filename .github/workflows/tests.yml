@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v7
         with:
             path: sei-loadtests
+            ref: feat/marlinhares-sei5
 
       - name: Fetch SEI
         uses: actions/checkout@v7
@@ -26,10 +27,17 @@ jobs:
           path: sei-loadtests/tests/assets/repos/sei-fontes
           ref: ${{ matrix.sei }}
 
+      - name: Fetch sei-docker
+        uses: actions/checkout@v7
+        with:
+          repository: pengovbr/sei-docker
+          path: sei-loadtests/tests/assets/repos/sei-docker
+
       - name: RunTests
         run: |
-          ls -lha
+          ls -lha sei-loadtests
           echo "teste"
           ls -lh sei-loadtests/tests/assets/repos/
           echo "teste2"
           ls -lh sei-loadtests/tests/assets/repos/sei-fontes
+          make sei-setup && make jmeter-run
