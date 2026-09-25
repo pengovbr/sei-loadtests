@@ -31,7 +31,7 @@ cat ${ENVS_DIR}/envcomplemento.env >> ${SEI_DOCKER_LOCATION_INFRA}/envlocal.env
 make -C ${SEI_DOCKER_LOCATION_INFRA} setup
 
 echo "Vamos tentar acessar a pagina de login do SEI, vamos aguardar ate 95 segs."
-for number in $(seq 1 95); do
+for number in $(seq 1 18); do
     echo 'Tentando acessar...'
 	set +e
 	var=$(curl --resolve "meusei.test:443:127.0.0.1" -s -L -k https://meusei.test/sei | grep "txtUsuario")
