@@ -8474,7 +8474,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
                     <elementProp name="acao" elementType="HTTPArgument">
                       <boolProp name="HTTPArgument.always_encode">false</boolProp>
                       <stringProp name="Argument.name">acao</stringProp>
-                      <stringProp name="Argument.value">dddddprocedimento_atribuicao_cadastrar</stringProp>
+                      <stringProp name="Argument.value">procedimento_atribuicao_cadastrar</stringProp>
                       <stringProp name="Argument.metadata">=</stringProp>
                       <boolProp name="HTTPArgument.use_equals">true</boolProp>
                     </elementProp>
