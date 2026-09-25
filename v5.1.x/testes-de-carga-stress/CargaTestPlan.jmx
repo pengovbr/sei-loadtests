@@ -3409,7 +3409,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
               </hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Salvar" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_rest.php?id_documento=${id_documento}&amp;acao_rest=editor_salvar_conteudo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
+                <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_rests.php?id_documento=${id_documento}&amp;acao_rests=editor_salvar_conteudo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash_editor_salvar}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">POST</stringProp>
                 <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
