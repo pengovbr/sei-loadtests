@@ -11579,7 +11579,7 @@ while(q==0){
     d = new File(dirProtocolos)
     files = d.listFiles();
     timenow = new Date().getTime()
-    files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt;  40000) }
+    files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000) }
 
     q = files.size()
 }

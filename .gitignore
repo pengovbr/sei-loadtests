@@ -1,10 +1,13 @@
 .DS_Store
 **/.DS_Store
 **/testProperties.prop
+**/testes-de-carga-stress/testProperties-test.prop
 **/assets/runtimeassets/cadProc/unidade*
 jmeter.log
 **/jmeter.log
-testes-de-carga-stress/resultado.csv
+**/result-testes.jtl
+**/testes-de-carga-stress/resultado.csv
 testes-de-carga-stress/resultadoweb
 testes-de-monitoramento/monitoramento-cookies-nagios/errors.txt
 testes-de-monitoramento/monitoramento-cookies-nagios/assets/*
+tests/assets/repos

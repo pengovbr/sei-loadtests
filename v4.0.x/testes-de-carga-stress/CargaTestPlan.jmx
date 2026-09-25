@@ -425,7 +425,7 @@
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="script">import org.apache.jmeter.services.FileServer; 
+          <stringProp name="script">import org.apache.jmeter.services.FileServer;
 
 String datahoje = new java.text.SimpleDateFormat(&quot;dd-MM-yyyy&quot;).format(new Date())
 props.put(&quot;propDataHoje&quot;, datahoje)
@@ -441,7 +441,7 @@ vars.put(&quot;qtdUsuariosInicial&quot;, qtdUsuarios)
 
 basedir = FileServer.getFileServer().getBaseDir();
 def fileContents = new File(basedir + &apos;/assets/cpfs.csv&apos;).getText(&apos;UTF-8&apos;);
-def lines = 0 
+def lines = 0
 
 fileContents.eachLine { line -&gt;
       lines++;
@@ -451,7 +451,7 @@ fileContents.eachLine { line -&gt;
 
 
 fileContents = new File(basedir + &apos;/assets/unidades.csv&apos;).getText(&apos;UTF-8&apos;);
-lines = 0 
+lines = 0
 
 fileContents.eachLine { line -&gt;
       lines++;
@@ -469,7 +469,7 @@ fileContents.eachLine { line -&gt;
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="script">import org.apache.jmeter.services.FileServer; 
+          <stringProp name="script">import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -2736,8 +2736,8 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
 
 Random random = new Random();
 
- 
-id_serie_rand = id_series[random.nextInt(id_series.length)];     
+
+id_serie_rand = id_series[random.nextInt(id_series.length)];
 
 //log.info(&quot;aaaaaaaaaaa&quot; + id_serie_rand)
 
@@ -5163,10 +5163,10 @@ if (vars.get(&quot;hdnInteressados_matchNr&quot;).toBoolean()){
     interessadoNome = vars.get(&quot;hdnInteressados_&quot; + i)
 
 
-    
+
     j = i+1
     ///log.info(&quot;aaaaaaaaaa&quot; + j)
-    
+
     interessadoValor = vars.get(&quot;hdnInteressados_&quot; + j)
     //log.info(&quot;aaaaaaaaaa&quot; + interessadoValor)
 
@@ -5175,7 +5175,7 @@ if (vars.get(&quot;hdnInteressados_matchNr&quot;).toBoolean()){
 
 
 hdnInteressados = hdnInteressados.substring(0, hdnInteressados.length()-1)
-    
+
 }
 
 
@@ -11037,8 +11037,8 @@ def montar(size){
 
      Random random = new Random();
 
-     for (int i = 0; i &lt; size; i++) {     
-         char c = alphabeto[random.nextInt(alphabeto.length)];     
+     for (int i = 0; i &lt; size; i++) {
+         char c = alphabeto[random.nextInt(alphabeto.length)];
          sb.append(c);
      }
 
@@ -11059,7 +11059,7 @@ def montar_texto_aleatorio(size){
 
         r += &quot;&lt;p&gt;${p1} ${p2} ${p3} ${p4} ${p5}&lt;/p&gt;&quot;
     }
-    
+
 
     return r
 
@@ -11496,8 +11496,8 @@ def montar(size){
 
      Random random = new Random();
 
-     for (int i = 0; i &lt; size; i++) {     
-         char c = alphabeto[random.nextInt(alphabeto.length)];     
+     for (int i = 0; i &lt; size; i++) {
+         char c = alphabeto[random.nextInt(alphabeto.length)];
          sb.append(c);
      }
 
@@ -11518,7 +11518,7 @@ def montar_texto_aleatorio(size){
 
         r += &quot;&lt;p&gt;${p1} ${p2} ${p3} ${p4} ${p5}&lt;/p&gt;&quot;
     }
-    
+
 
     return r
 
@@ -16928,7 +16928,7 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">import org.apache.jmeter.services.FileServer; 
+            <stringProp name="script">import org.apache.jmeter.services.FileServer;
 
 
 id_proc = vars.get(&quot;id_procedimento&quot;)
@@ -16951,7 +16951,7 @@ vars.put(&quot;cadProcArquivoControleNome&quot;, nomearquivo)
 
 def f = new File( nomearquivo )
 f.delete()
-f.createNewFile() 
+f.createNewFile()
 
 f.append(&quot;ProcedimentoFormatado=&quot; + proc_formatado + &quot;\n&quot;)
 
@@ -16971,7 +16971,7 @@ for (i=1; i&lt;= totalDocs; i++){
 
     	f.append(&quot;DocumentoInterno_&quot; + i + &quot;=&quot; + docnome + &quot;\n&quot;)
     	f.append(&quot;DocumentoInternoPesquisa_&quot; + i + &quot;=&quot; + docpesquisa + &quot;\n&quot;)
-    	
+
 }
 
 vars.put(&quot;cadProcQtdDocs&quot;, &quot;0&quot;)
@@ -17015,18 +17015,18 @@ def hash = MessageDigest.getInstance( &apos;MD5&apos; ).with {
 Random r = new Random()
 basedir = FileServer.getFileServer().getBaseDir();
 
-dirUploads = basedir + &quot;/${dirUploadFiles}&quot; 
+dirUploads = basedir + &quot;/${dirUploadFiles}&quot;
 d = new File(dirUploads)
 files = d.listFiles();
 files = files.findAll{ it.getName().endsWith(&quot;.pdf&quot;) }
 
 if (files){
-	
+
 	f = files[r.nextInt(files.size())];
 	//md5 = md5(f)
 	//vars.put(&quot;upload_md5&quot;, md5)
-	
-} 
+
+}
 
 nome = f.getName()
 
@@ -24182,7 +24182,7 @@ vars.put(&quot;cadProc_DE_&quot; + qtdDocsExternos + &quot;_pesquisar&quot;, pes
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">import org.apache.jmeter.services.FileServer; 
+            <stringProp name="script">import org.apache.jmeter.services.FileServer;
 
 
 nomearquivo = vars.get(&quot;cadProcArquivoControleNome&quot;)
@@ -24204,7 +24204,7 @@ for (i=1; i&lt;=totalDocs; i++){
 
     	f.append(&quot;DocumentoExterno_&quot; + i + &quot;=&quot; + docnome + &quot;\n&quot;)
     	f.append(&quot;DocumentoExternoPesquisa_&quot; + i + &quot;=&quot; + docpesquisa + &quot;\n&quot;)
-    	
+
 }
 
 vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
@@ -24310,7 +24310,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">
-import org.apache.jmeter.services.FileServer; 
+import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -24321,16 +24321,16 @@ files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
 while(q==0){
-	
+
 	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
 	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
 	Thread.sleep(30000)
-	
+
     dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
     d = new File(dirProtocolos)
     files = d.listFiles();
 	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-	
+
 	q = files.size()
 }
 
@@ -24370,7 +24370,7 @@ id_procedimento = nome.substring(18)
 
 //log.info(id_procedimento)
 
-procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)           
+procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)
 
 vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)
 
@@ -24385,9 +24385,9 @@ for (j=1;j&lt;=dis.size(); j++){
     doc = dis.get(j-1)
     doc = doc.replace(&quot;DocumentoInterno_&quot; + j + &quot;=&quot;, &quot;&quot;)
     //log.info(doc)
-    
+
     vars.put(&quot;pesquisaNaUnidade_DocumentoInterno_&quot; + j, doc)
-    
+
 
 }
 
@@ -24403,7 +24403,7 @@ for (j=1;j&lt;=dex.size(); j++){
     doc = dex.get(j-1)
     doc = doc.replace(&quot;DocumentoExterno_&quot; + j + &quot;=&quot;, &quot;&quot;)
     //log.info(doc)
-    
+
     vars.put(&quot;pesquisaNaUnidade_DocumentoExterno_&quot; + j, doc)
 
 }</stringProp>
@@ -37238,7 +37238,7 @@ for (j=1;j&lt;=dex.size(); j++){
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">
-import org.apache.jmeter.services.FileServer; 
+import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -37249,16 +37249,16 @@ files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
 while(q==0){
-	
+
 	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
 	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
 	Thread.sleep(30000)
-	
+
     dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
     d = new File(dirProtocolos)
     files = d.listFiles();
 	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-	
+
 	q = files.size()
 }
 
@@ -37288,7 +37288,7 @@ for(i=first_user; i&lt;=last_user; i++){
 
     user[j] =  &quot;usuario&quot; + i.toString().padLeft(5, &quot;0&quot;)
     j++
-    
+
 }
 
 usuario = user.get(rand.nextInt(user.size()))
@@ -37302,7 +37302,7 @@ id_procedimento = nome.substring(18)
 
 //log.info(id_procedimento)
 
-procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)           
+procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)
 
 vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           </JSR223Sampler>
@@ -47303,7 +47303,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">
-import org.apache.jmeter.services.FileServer; 
+import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -47314,16 +47314,16 @@ files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
 while(q==0){
-	
+
 	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
 	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
 	Thread.sleep(30000)
-	
+
     dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
     d = new File(dirProtocolos)
     files = d.listFiles();
 	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-	
+
 	q = files.size()
 }
 
@@ -47353,7 +47353,7 @@ for(i=first_user; i&lt;=last_user; i++){
 
     user[j] =  &quot;usuario&quot; + i.toString().padLeft(5, &quot;0&quot;)
     j++
-    
+
 }
 
 usuario = user.get(rand.nextInt(user.size()))
@@ -47367,7 +47367,7 @@ id_procedimento = nome.substring(18)
 
 //log.info(id_procedimento)
 
-procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)           
+procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)
 
 vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           </JSR223Sampler>
@@ -52645,7 +52645,7 @@ v=&quot;&quot;
 for(i=1;i&lt;=t;i++){
 
 	v = v + vars.get(&quot;chkItem_&quot; + i)
-	if (i != t){ 
+	if (i != t){
 		v = v + &quot;,&quot;
 	}
 }
@@ -54096,7 +54096,7 @@ vars.put(&quot;chkItemArray&quot;, v)
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">
-import org.apache.jmeter.services.FileServer; 
+import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -54107,16 +54107,16 @@ files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
 while(q==0){
-	
+
 	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
 	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
 	Thread.sleep(30000)
-	
+
     dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
     d = new File(dirProtocolos)
     files = d.listFiles();
 	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-	
+
 	q = files.size()
 }
 
@@ -54146,7 +54146,7 @@ for(i=first_user; i&lt;=last_user; i++){
 
     user[j] =  &quot;usuario&quot; + i.toString().padLeft(5, &quot;0&quot;)
     j++
-    
+
 }
 
 usuario = user.get(rand.nextInt(user.size()))
@@ -54160,7 +54160,7 @@ id_procedimento = nome.substring(18)
 
 //log.info(id_procedimento)
 
-procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)           
+procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)
 
 vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           </JSR223Sampler>
@@ -59195,7 +59195,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
 a=r.nextInt(2)
 
 if(a){
-    v = &quot;on&quot;	
+    v = &quot;on&quot;
 }else{
     v = &quot;off&quot;
 }
@@ -60331,7 +60331,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
             <stringProp name="script">
-import org.apache.jmeter.services.FileServer; 
+import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -60339,11 +60339,11 @@ dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
 d = new File(dirProtocolos)
 files = d.listFiles();
 timenow = new Date().getTime()
-files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 300000)  }
+files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
 
 q = files.size()
 while(q==0){
-	
+
 	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
 	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
 	Thread.sleep(30000)
@@ -60351,8 +60351,8 @@ while(q==0){
     d = new File(dirProtocolos)
     files = d.listFiles();
     timenow = new Date().getTime()
-    files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 300000) }
-	
+    files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000) }
+
     q = files.size()
 }
 
@@ -60391,7 +60391,7 @@ vars.put(&quot;id_procedimento&quot;, id_procedimento)
 
 //log.info(id_procedimento)
 
-procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)           
+procedimento_formatado = f.readLines().get(0).replace(&quot;ProcedimentoFormatado=&quot; , &quot;&quot;)
 
 vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)
 
@@ -60413,7 +60413,7 @@ for (j=1;j&lt;=dis.size(); j++){
     doc = doc[2]
 
     vars.put(&quot;pesquisaNaUnidade_DocumentoInternoTermo_&quot; + j, doc)
-    
+
 
 }
 
@@ -64561,7 +64561,7 @@ for (j=1;j&lt;=dis.size(); j++){
           <stringProp name="parameters"></stringProp>
           <stringProp name="filename"></stringProp>
           <stringProp name="cacheKey">true</stringProp>
-          <stringProp name="script">import org.apache.jmeter.services.FileServer; 
+          <stringProp name="script">import org.apache.jmeter.services.FileServer;
 
 basedir = FileServer.getFileServer().getBaseDir();
 
