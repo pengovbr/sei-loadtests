@@ -1,0 +1,35 @@
+name: Testes
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - sei: 4.1.5
+    steps:
+      - name: Checkout Me
+        uses: actions/checkout@v7
+        with:
+            path: sei-loadtests
+
+      - name: Fetch SEI
+        uses: actions/checkout@v7
+        with:
+          repository: pengovbr/sei
+          token: ${{ secrets.GH_PAT }}
+          path: sei-loadtests/tests/assets/repos/sei-fontes
+          ref: ${{ matrix.sei }}
+
+      - name: RunTests
+        run: |
+          ls -lha
+          echo "teste"
+          ls -lh sei-loadtests/tests/assets/repos/
+          echo "teste2"
+          ls -lh sei-loadtests/tests/assets/repos/sei-fontes
