@@ -14,14 +14,41 @@ on:
 
 jobs:
 
-  test:
+  pretest:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Me
         uses: actions/checkout@v7
         with:
             path: sei-loadtests
-            ref: feat/marlinhares-sei5
+
+      - name: Fetch SEI
+        uses: actions/checkout@v7
+        with:
+          repository: pengovbr/sei
+          token: ${{ secrets.GH_PAT }}
+          path: sei-loadtests/tests/assets/repos/sei-fontes
+          ref: ${{ inputs.sei-version }}
+
+      - name: Fetch sei-docker
+        uses: actions/checkout@v7
+        with:
+          repository: pengovbr/sei-docker
+          path: sei-loadtests/tests/assets/repos/sei-docker
+
+      - name: RunPreTests
+        run: |
+          cd sei-loadtests/tests
+          make pretest
+
+  test:
+    runs-on: ubuntu-latest
+    needs: pretest
+    steps:
+      - name: Checkout Me
+        uses: actions/checkout@v7
+        with:
+            path: sei-loadtests
 
       - name: Fetch SEI
         uses: actions/checkout@v7

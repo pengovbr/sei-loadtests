@@ -12,7 +12,8 @@ SEI_FONTES_REPO ?= https://github.com/pengovbr/sei
 SEI_FONTES_LOCATION ?= $(MAKEFILE_DIR)assets/repos/sei-fontes
 SEI_FONTES_CHECKOUT_VERSION ?= "4.0.12.15"
 
-test: download-sei-docker download-sei-fontes sei-setup jmeter-run
+pretest: download-sei-docker download-sei-fontes sei-setup jmeter-preload
+test: pretest jmeter-load
 
 download-sei-docker:
 	@if [ ! -d "$(SEI_DOCKER_LOCATION)" ] || [ $$(ls -A "$(SEI_DOCKER_LOCATION)" | wc -l) -eq 0 ]; then \
