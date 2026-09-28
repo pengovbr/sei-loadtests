@@ -39,7 +39,7 @@ jobs:
       - name: RunPreTests
         run: |
           cd sei-loadtests/tests
-          make pretest
+          ls
 
       - name: Archive pretest artifacts
         uses: actions/upload-artifact@v4

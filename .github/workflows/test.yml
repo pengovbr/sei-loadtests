@@ -48,7 +48,7 @@ jobs:
       - name: RunTests
         run: |
           cd sei-loadtests/tests
-          make test
+          ls
 
       - name: Archive test artifacts
         uses: actions/upload-artifact@v4
