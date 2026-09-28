@@ -1,0 +1,58 @@
+name: Pre Teste Versao
+
+on:
+  workflow_dispatch:
+    inputs:
+        sei-version:
+            required: true
+            type: string
+  workflow_call:
+    inputs:
+        sei-version:
+            required: true
+            type: string
+
+jobs:
+
+  pretest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Me
+        uses: actions/checkout@v7
+        with:
+            path: sei-loadtests
+
+      - name: Fetch SEI
+        uses: actions/checkout@v7
+        with:
+          repository: pengovbr/sei
+          token: ${{ secrets.GH_PAT }}
+          path: sei-loadtests/tests/assets/repos/sei-fontes
+          ref: ${{ inputs.sei-version }}
+
+      - name: Fetch sei-docker
+        uses: actions/checkout@v7
+        with:
+          repository: pengovbr/sei-docker
+          path: sei-loadtests/tests/assets/repos/sei-docker
+
+      - name: RunPreTests
+        run: |
+          cd sei-loadtests/tests
+          make pretest
+
+      - name: Archive pretest artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-test-results
+          path: sei-loadtests/tests/assets/test-results/result-pretestes.jtl
+
+      - name: Save parameters to file
+        run: |
+          echo "${{ inputs.sei-version }}" > sei-version.parameter
+
+      - name: Upload parameter
+        uses: actions/upload-artifact@v4
+        with:
+          name: myparameter
+          path: sei-version.parameter
