@@ -45,8 +45,10 @@ sei-setup:
 	@echo "Vamos subir o sei usando o sei-docker/infra em $(SEI_DOCKER_LOCATION)infra"
 	$(SCRIPTS_DIR)/setup.sh $(SEI_DOCKER_LOCATION_INFRA) $(SEI_FONTES_LOCATION) $(ENVS_DIR) $(SEI_FONTES_CHECKOUT_VERSION)
 
-jmeter-run:
+jmeter-preload:
 	@echo "Running jmeter tests..."
-	$(SCRIPTS_DIR)/jmeterRun.sh $(SEI_FONTES_LOCATION) $(ENVS_DIR)
+	$(SCRIPTS_DIR)/jmeterLoad.sh "preload" $(SEI_FONTES_LOCATION) $(ENVS_DIR)
 
-
+jmeter-load:
+	@echo "Running jmeter tests..."
+	$(SCRIPTS_DIR)/jmeterLoad.sh "load" $(SEI_FONTES_LOCATION) $(ENVS_DIR)
