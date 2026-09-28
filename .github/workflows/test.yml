@@ -3,7 +3,6 @@ name: Teste Versao
 on:
   workflow_run:
     workflows: ["Pre Teste Versao"]
-    branches: ["feat/marlinhares-sei5"]
     types:
       - completed
 
@@ -24,7 +23,6 @@ jobs:
       - name: Read SEI-version parameter
         run: |
           SEI_VERSION=$(cat ./sei-version.parameter)
-          echo "SEI_VERSION=$SEI_VERSION" >> $GITHUB_ENV
 
       - name: Checkout Me
         uses: actions/checkout@v7
@@ -37,7 +35,7 @@ jobs:
           repository: pengovbr/sei
           token: ${{ secrets.GH_PAT }}
           path: sei-loadtests/tests/assets/repos/sei-fontes
-          ref: ${{ env.SEI_VERSION }}
+          ref: 4.0.12.15
 
       - name: Fetch sei-docker
         uses: actions/checkout@v7
