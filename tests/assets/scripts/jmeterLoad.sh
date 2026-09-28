@@ -30,7 +30,7 @@ if [ "${MODE}" = "preload" ]; then
         alpine/jmeter:5.6.3 -n -t PreCargaTestPlan.jmx -p /t/testProperties-test.prop -l /t/result-pretestes.jtl
 
     set +e
-    e=$(grep ",false," ${DIR_TESTE_EXE}/result-testes.jtl | wc -l)
+    e=$(grep ",false," ${DIR_TESTE_EXE}/result-pretestes.jtl | wc -l)
     set -e
 
     if [ "$e" != "0" ]; then
@@ -38,8 +38,7 @@ if [ "${MODE}" = "preload" ]; then
         exit 1
     fi
 
-    mv ${DIR_TESTE_EXE}/result-pretestes.jtl ${DIR_TESTE_EXE}/../../tests/testResults/result-pretestes.jtl || true
-    touch ${DIR_TESTE_EXE}/../../tests/testResults/result-pretestes.jtl
+    cp ${DIR_TESTE_EXE}/result-pretestes.jtl ${DIR_TESTE_EXE}/../../tests/assets/testResults/result-pretestes.jtl
 fi
 
 if [ "${MODE}" = "load" ]; then
@@ -59,9 +58,10 @@ if [ "${MODE}" = "load" ]; then
         exit 1
     fi
 
-    mv ${DIR_TESTE_EXE}/result-testes.jtl ${DIR_TESTE_EXE}/../../tests/testResults/result-testes.jtl || true
-    touch ${DIR_TESTE_EXE}/../../tests/testResults/result-testes.jtl
+    cp ${DIR_TESTE_EXE}/result-testes.jtl ${DIR_TESTE_EXE}/../../tests/assets/testResults/result-testes.jtl
 
 fi
 
 rm -rf ${DIR_TESTE_EXE}/testProperties-test.prop || true
+rm -rf ${DIR_TESTE_EXE}/result-testes.jtl || true
+rm -rf ${DIR_TESTE_EXE}/result-pretestes.jtl || true
