@@ -2,6 +2,10 @@ name: Teste Versao
 
 on:
   workflow_dispatch:
+    inputs:
+        sei-version:
+            required: true
+            type: string
   workflow_call:
     inputs:
         sei-version:
