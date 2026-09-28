@@ -3,6 +3,7 @@ name: Teste Versao
 on:
   workflow_run:
     workflows: ["Pre Teste Versao"]
+    branches: ["feat/marlinhares-sei5"]
     types:
       - completed
 
@@ -10,7 +11,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    if: ${{ gitevents.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
 
