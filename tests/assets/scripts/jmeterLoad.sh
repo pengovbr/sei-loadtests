@@ -27,7 +27,7 @@ if [ "${MODE}" = "preload" ]; then
 
     docker run --name jmeter --rm --add-host=meusei.test:host-gateway \
         -i -v ${DIR_TESTE_EXE}:/t -w /t \
-        alpine/jmeter:5.6.3 -n -t PreCargaTestPlan.jmx -p /t/testProperties-test.prop -l /t/result-testes.jtl
+        alpine/jmeter:5.6.3 -n -t PreCargaTestPlan.jmx -p /t/testProperties-test.prop -l /t/result-pretestes.jtl
 
     set +e
     e=$(grep ",false," ${DIR_TESTE_EXE}/result-testes.jtl | wc -l)
@@ -38,6 +38,8 @@ if [ "${MODE}" = "preload" ]; then
         exit 1
     fi
 
+    mv ${DIR_TESTE_EXE}/result-pretestes.jtl ${DIR_TESTE_EXE}/../../tests/testResults/result-pretestes.jtl || true
+    touch ${DIR_TESTE_EXE}/../../tests/testResults/result-pretestes.jtl
 fi
 
 if [ "${MODE}" = "load" ]; then
@@ -57,7 +59,9 @@ if [ "${MODE}" = "load" ]; then
         exit 1
     fi
 
+    mv ${DIR_TESTE_EXE}/result-testes.jtl ${DIR_TESTE_EXE}/../../tests/testResults/result-testes.jtl || true
+    touch ${DIR_TESTE_EXE}/../../tests/testResults/result-testes.jtl
+
 fi
 
 rm -rf ${DIR_TESTE_EXE}/testProperties-test.prop || true
-rm -rf ${DIR_TESTE_EXE}/result-testes.jtl || true
