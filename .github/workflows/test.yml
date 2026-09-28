@@ -15,7 +15,7 @@ jobs:
     steps:
 
       - name: Get SEI-version parameter
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: myparameter
           path: ./sei-version.parameter
@@ -48,8 +48,8 @@ jobs:
           cd sei-loadtests/tests
           ls
 
-      - name: Archive test artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: sei-loadtests/tests/assets/test-results/result-testes.jtl
+      # - name: Archive test artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: test-results
+      #     path: sei-loadtests/tests/assets/test-results/result-testes.jtl
