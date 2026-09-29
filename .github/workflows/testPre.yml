@@ -42,7 +42,7 @@ jobs:
           ls
 
       # - name: Archive pretest artifacts
-      #   uses: actions/upload-artifact@v4
+      #   uses: actions/upload-artifact@v7
       #   with:
       #     name: pre-test-results
       #     path: sei-loadtests/tests/assets/test-results/result-pretestes.jtl
@@ -52,7 +52,7 @@ jobs:
           echo "${{ inputs.sei-version }}" > sei-version.parameter
 
       - name: Upload parameter
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: myparameter
-          path: sei-version.parameter
+          path: ./sei-version.parameter

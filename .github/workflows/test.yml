@@ -11,19 +11,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      actions: read
+      contents: read
 
     steps:
 
       - name: Get SEI-version parameter
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: myparameter
           run-id: ${{ github.event.workflow_run.id }}
-          path: ./sei-version.parameter
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ./artifacts
 
       - name: Read SEI-version parameter
         run: |
-          SEI_VERSION=$(cat ./sei-version.parameter)
+          SEI_VERSION=$(cat ./artifacts/sei-version.parameter)
+          echo "SEI_VERSION=${SEI_VERSION}" >> $GITHUB_ENV
 
       - name: Checkout Me
         uses: actions/checkout@v7
@@ -36,7 +41,7 @@ jobs:
           repository: pengovbr/sei
           token: ${{ secrets.GH_PAT }}
           path: sei-loadtests/tests/assets/repos/sei-fontes
-          ref: 4.0.12.15
+          ref: ${{ env.SEI_VERSION }}
 
       - name: Fetch sei-docker
         uses: actions/checkout@v7
@@ -50,7 +55,7 @@ jobs:
           ls
 
       # - name: Archive test artifacts
-      #   uses: actions/upload-artifact@v4
+      #   uses: actions/upload-artifact@v7
       #   with:
       #     name: test-results
       #     path: sei-loadtests/tests/assets/test-results/result-testes.jtl
