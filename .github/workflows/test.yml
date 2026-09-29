@@ -1,34 +1,23 @@
 name: Teste Versao
 
 on:
-  workflow_run:
-    workflows: ["Pre Teste Versao"]
-    types:
-      - completed
+  workflow_dispatch:
+    inputs:
+        sei-version:
+            required: true
+            type: string
+  workflow_call:
+    inputs:
+        sei-version:
+            required: true
+            type: string
 
 jobs:
 
   test:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    permissions:
-      actions: read
-      contents: read
 
     steps:
-
-      - name: Get SEI-version parameter
-        uses: actions/download-artifact@v5
-        with:
-          name: myparameter
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: ./artifacts
-
-      - name: Read SEI-version parameter
-        run: |
-          SEI_VERSION=$(cat ./artifacts/sei-version.parameter)
-          echo "SEI_VERSION=${SEI_VERSION}" >> $GITHUB_ENV
 
       - name: Checkout Me
         uses: actions/checkout@v7
@@ -41,7 +30,7 @@ jobs:
           repository: pengovbr/sei
           token: ${{ secrets.GH_PAT }}
           path: sei-loadtests/tests/assets/repos/sei-fontes
-          ref: ${{ env.SEI_VERSION }}
+          ref: ${{ inputs.sei-version }}
 
       - name: Fetch sei-docker
         uses: actions/checkout@v7
@@ -49,13 +38,14 @@ jobs:
           repository: pengovbr/sei-docker
           path: sei-loadtests/tests/assets/repos/sei-docker
 
-      - name: RunTests
+      - name: RunPreTests
         run: |
           cd sei-loadtests/tests
           ls
 
-      # - name: Archive test artifacts
+      # - name: Archive pretest artifacts
       #   uses: actions/upload-artifact@v7
       #   with:
-      #     name: test-results
+      #     name: pre-test-results
       #     path: sei-loadtests/tests/assets/test-results/result-testes.jtl
+
