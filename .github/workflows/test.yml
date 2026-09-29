@@ -18,7 +18,7 @@ jobs:
     steps:
 
       - name: Get SEI-version parameter
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v5
         with:
           name: myparameter
           run-id: ${{ github.event.workflow_run.id }}
