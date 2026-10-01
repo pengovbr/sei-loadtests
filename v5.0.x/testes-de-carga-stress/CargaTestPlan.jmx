@@ -1896,7 +1896,7 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             <hashTree/>
           </hashTree>
         </hashTree>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Docs Internos">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Docs Internos" enabled="true">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">${CadProc_qtdDocsInternos}</stringProp>
         </LoopController>
@@ -3346,7 +3346,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 1"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 1" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -3618,7 +3618,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 2"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar Edicao 2" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -3984,7 +3984,7 @@ vars.put(&quot;cadProc_DI_&quot; + qtdDocs + &quot;_pesquisar&quot;, pesquisar)
                 <hashTree/>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Assinar"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Assinar" enabled="true"/>
             <hashTree>
               <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInternoAssinar/Clique em Assinar" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
@@ -5472,14 +5472,19 @@ vars.put(&quot;upload_cnt&quot;, n + &quot;&quot;)</stringProp>
                 </hashTree>
               </hashTree>
             </hashTree>
-            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar" enabled="true"/>
+            <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar"/>
             <hashTree>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
                 <stringProp name="scriptLanguage">groovy</stringProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">d = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(new Date())
+                <stringProp name="script">//d = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(new Date())
+
+Calendar cal = Calendar.getInstance()
+cal.add(Calendar.YEAR, -1)
+
+d = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(cal.getTime());
 
 
 vars.put(&quot;upload_data&quot;, d)
@@ -6392,7 +6397,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_002}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_002}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_002}</stringProp>
@@ -7973,7 +7978,7 @@ for (j=1;j&lt;=dex.size(); j++){
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_003}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_003}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_003}</stringProp>
@@ -8935,7 +8940,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_004}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_004}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_004}</stringProp>
@@ -10639,7 +10644,7 @@ vars.put(&quot;chkItemArray&quot;, v)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_005}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_005}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_005}</stringProp>

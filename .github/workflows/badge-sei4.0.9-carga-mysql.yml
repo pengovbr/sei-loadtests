@@ -1,0 +1,13 @@
+name: sei4.0.9-carga-mysql
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    uses: ./.github/workflows/testCarga.yml
+    secrets: inherit
+    with:
+      sei-version: 4.0.9
+      db: mysql

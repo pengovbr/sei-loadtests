@@ -21,35 +21,35 @@ qtdUsers_002=1
 rampup_002=0
 loopCount_002=5
 threadDuration_002=180
-startupDelay_002=60
+startupDelay_002=100
 
 # Cenario003
 qtdUsers_003=2
 rampup_003=10
 loopCount_003=10
 threadDuration_003=180
-startupDelay_003=60
+startupDelay_003=120
 
 # Cenario004 - gerarpdf maior gargalo no app
 qtdUsers_004=1
 rampup_004=0
 loopCount_004=1
 threadDuration_004=180
-startupDelay_004=90
+startupDelay_004=150
 
 # Cenario005
 qtdUsers_005=2
 rampup_005=10
 loopCount_005=5
 threadDuration_005=180
-startupDelay_005=100
+startupDelay_005=180
 
 # Cenario006
 qtdUsers_006=1
 rampup_006=180
 loopCount_006=5
 threadDuration_006=180
-startupDelay_006=120
+startupDelay_006=180
 
 ####################################
 # propriedades do ambiente
@@ -97,24 +97,24 @@ bolKeepRuntimeAssets=false
 bolRodarAssets=false
 bolThinkTimeEnable=false
 tk_cenario001_geral_fixo=2000
-tk_cenario001_geral_variavel=4000
+tk_cenario001_geral_variavel=2000
 tk_cenario001_DocInternoEdit1_fixo=1000
-tk_cenario001_DocInternoEdit1_variavel=6000
-tk_cenario001_DocInternoEdit2_fixo=10000
-tk_cenario001_DocInternoEdit2_variavel=10000
+tk_cenario001_DocInternoEdit1_variavel=2000
+tk_cenario001_DocInternoEdit2_fixo=2000
+tk_cenario001_DocInternoEdit2_variavel=2000
 tk_cenario002_geral_fixo=2000
-tk_cenario002_geral_variavel=4000
+tk_cenario002_geral_variavel=2000
 tk_cenario002_lerdocinterno_fixo=2000
-tk_cenario002_lerdocinterno_variavel=15000
+tk_cenario002_lerdocinterno_variavel=5000
 tk_cenario002_lerdocexterno_fixo=2000
-tk_cenario002_lerdocexterno_variavel=15000
+tk_cenario002_lerdocexterno_variavel=5000
 tk_cenario003_geral_fixo=4000
 tk_cenario003_geral_variavel=2000
 tk_cenario004_geral_fixo=2000
-tk_cenario004_geral_variavel=4000
-tk_cenario005_geral_fixo=4000
-tk_cenario005_geral_variavel=6000
-tk_cenario006_geral_fixo=4000
-tk_cenario006_geral_variavel=6000
+tk_cenario004_geral_variavel=2000
+tk_cenario005_geral_fixo=2000
+tk_cenario005_geral_variavel=2000
+tk_cenario006_geral_fixo=2000
+tk_cenario006_geral_variavel=2000
 tk_cenario006_lerdocinterno_fixo=2000
-tk_cenario006_lerdocinterno_variavel=15000
+tk_cenario006_lerdocinterno_variavel=1000

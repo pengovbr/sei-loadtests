@@ -10,10 +10,11 @@ SEI_DOCKER_LOCATION_INFRA ?= $(SEI_DOCKER_LOCATION)/infra
 
 SEI_FONTES_REPO ?= https://github.com/pengovbr/sei
 SEI_FONTES_LOCATION ?= $(MAKEFILE_DIR)assets/repos/sei-fontes
-SEI_FONTES_CHECKOUT_VERSION ?= "4.0.12.15"
 
-pretest: download-sei-docker download-sei-fontes sei-setup jmeter-preload
-test: pretest jmeter-load
+DB ?= "mysql"
+
+
+carga: download-sei-docker download-sei-fontes sei-setup jmeter-precarga jmeter-carga
 
 download-sei-docker:
 	@if [ ! -d "$(SEI_DOCKER_LOCATION)" ] || [ $$(ls -A "$(SEI_DOCKER_LOCATION)" | wc -l) -eq 0 ]; then \
@@ -43,13 +44,13 @@ sei-destroy:
 
 sei-setup:
 	@make sei-destroy
-	@echo "Vamos subir o sei usando o sei-docker/infra em $(SEI_DOCKER_LOCATION)infra"
-	$(SCRIPTS_DIR)/setup.sh $(SEI_DOCKER_LOCATION_INFRA) $(SEI_FONTES_LOCATION) $(ENVS_DIR) $(SEI_FONTES_CHECKOUT_VERSION)
+	@echo "Vamos subir o sei usando o sei-docker/infra em $(SEI_DOCKER_LOCATION_INFRA)"
+	$(SCRIPTS_DIR)/setup.sh $(DB) $(SEI_DOCKER_LOCATION_INFRA) $(SEI_FONTES_LOCATION) $(ENVS_DIR)
 
-jmeter-preload:
-	@echo "Running jmeter tests..."
+jmeter-precarga:
+	@echo "Running jmeter pre tests..."
 	$(SCRIPTS_DIR)/jmeterLoad.sh "preload" $(SEI_FONTES_LOCATION) $(ENVS_DIR)
 
-jmeter-load:
+jmeter-carga:
 	@echo "Running jmeter tests..."
 	$(SCRIPTS_DIR)/jmeterLoad.sh "load" $(SEI_FONTES_LOCATION) $(ENVS_DIR)

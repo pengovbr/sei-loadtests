@@ -2,20 +2,37 @@
 
 Projeto com scripts no jmeter para testes de carga e stress no SEI.
 
-Testado em SEI 4.0.9, 4.0.12, 4.0.12.15, 4.1.3, 4.1.4 e 4.1.5.  
-Um aspecto importante a se levar em conta é que a instalação de módulos pode acarretar falha nos testes caso mude as chamadas das requisições.  
+Testado em SEI: 4.0.9, 4.0.12, 4.0.12.15, 4.1.3, 4.1.4 e 4.1.5.
+
+|Versão| Resultado |
+|--|--|
+| 4.0.9 | [![sei4.0.9-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.0.9-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.0.9-carga-mysql.yml) |
+| 4.0.12 | [![sei4.0.12-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.0.12-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.0.12-carga-mysql.yml) |
+| 4.0.12.15 | [![sei4.0.12.15-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.0.12.15-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.0.12.15-carga-mysql.yml) |
+| 4.1.3 | [![sei4.1.3-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.1.3-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.1.3-carga-mysql.yml) |
+| 4.1.4 | [![sei4.1.4-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.1.4-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.1.4-carga-mysql.yml) |
+| 4.1.5 | [![sei4.1.5-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.1.5-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei4.1.5-carga-mysql.yml) |
+| 5.0.1 | [![sei5.0.1-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.1-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.1-carga-mysql.yml) |
+| 5.0.2 | [![sei5.0.2-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.2-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.2-carga-mysql.yml) |
+| 5.0.3 | [![sei5.0.3-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.3-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.3-carga-mysql.yml) |
+| 5.0.4 | [![sei5.0.4-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.4-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.4-carga-mysql.yml) |
+| 5.0.5 | [![sei5.0.5-carga-mysql](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.5-carga-mysql.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei5.0.5-carga-mysql.yml) |
+
+
+Um aspecto importante a se levar em conta é que a instalação de módulos pode acarretar falha nos testes caso mude as chamadas das requisições.
+
 
 
 ## Divisão do Projeto
 
-Primeiro escolha a versão do SEI selecionando a pasta correspondente.  
+Primeiro escolha a versão do SEI selecionando a pasta correspondente.
 **Na pasta selecionada, existe um readme com as orientações para rodar o teste.**
 
 Ao entrar em cada pasta existe um README específico:
 
-- **testes de carga e stress:** 
+- **testes de carga e stress:**
 	aqui ficam os testes em jmeter para fazer carga e stress nos ambientes, abordando diversos cenários de uso do SEI.
-	
+
 - **testes de monitoramento:**
 	aqui ficam testes em jmeter que ao implantar o sistema nos deparamos com alguma lentidão. Foram necessários para o profissional da sustentação identificar possíveis gargalos relacionados a nó de aplicação ou ingress.
 	Apenas SEI4.0.x.
@@ -23,7 +40,7 @@ Ao entrar em cada pasta existe um README específico:
 	- **monitoramento-cookies-nagios:**
 		esse teste faz inicialmente um apanhado dos cookies ofertados pela url com o  intuito de levantar os possíveis nós(ou pods) de entrada possíveis. Depois disso faz uma chamada ao sistema, logando com o usuário robô disponibilizado, e faz algumas operações simples para informar se o sistema está no ar.
 		Segue junto um script para ser disponibilizado no Nagios para monitorar a disponiblidade
-	
-	
+
+
 	- **monitoramento-nodes-ingress:**
 		nesse teste você informa os possíveis nós físicos onde residem seus ingress kubernetes (ou seus balanceadores cattle, ou até mesmo as vms internas q ofertam o tráfego http ou https para o sistema) e dispara uma chamada independente para cada um deles testando o login e pesquisa simples de processo e documentos. A execução do teste em loop vai mostrar possíveis erros aleatórios que possam acontecer e listá-los para análise

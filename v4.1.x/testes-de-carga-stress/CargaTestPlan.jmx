@@ -506,7 +506,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_001}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_001}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_001}</stringProp>
@@ -4449,7 +4449,7 @@ vars.put(&quot;cadProcQtdDocs&quot;, &quot;0&quot;)
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -5349,12 +5349,17 @@ vars.put(&quot;upload_cnt&quot;, n + &quot;&quot;)</stringProp>
             </hashTree>
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar" enabled="true"/>
             <hashTree>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
                 <stringProp name="scriptLanguage">groovy</stringProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
                 <stringProp name="cacheKey">true</stringProp>
-                <stringProp name="script">d = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(new Date())
+                <stringProp name="script">//d = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(new Date())
+
+Calendar cal = Calendar.getInstance()
+cal.add(Calendar.YEAR, -1)
+
+d = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(cal.getTime());
 
 
 vars.put(&quot;upload_data&quot;, d)
@@ -6192,7 +6197,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -6229,7 +6234,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -6267,7 +6272,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_002}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_002}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_002}</stringProp>
@@ -7810,7 +7815,7 @@ for (j=1;j&lt;=dex.size(); j++){
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -7848,7 +7853,7 @@ for (j=1;j&lt;=dex.size(); j++){
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_003}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_003}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_003}</stringProp>
@@ -8810,7 +8815,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_004}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_004}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_004}</stringProp>
@@ -10514,7 +10519,7 @@ vars.put(&quot;chkItemArray&quot;, v)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_005}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_005}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_005}</stringProp>
@@ -11282,14 +11287,14 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário006-PesquisaSolrDocInterno" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário006-PesquisaSolrDocInterno">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_006}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_006}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_006}</stringProp>
         <stringProp name="ThreadGroup.delay">${startupDelay_006}</stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">startnextloop</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
           <stringProp name="LoopController.loops">${loopCount_006}</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
