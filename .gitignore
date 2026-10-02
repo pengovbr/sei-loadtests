@@ -2,6 +2,7 @@
 **/.DS_Store
 **/testProperties.prop
 **/testes-de-carga-stress/testProperties-test.prop
+**/CargaTestPlan-test.jmx
 **/assets/runtimeassets/cadProc/unidade*
 jmeter.log
 **/jmeter.log

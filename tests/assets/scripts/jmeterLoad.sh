@@ -21,7 +21,6 @@ yes | cp ${DIR_PROP}/testProperties-test.prop ${DIR_TESTE_EXE}/testProperties-te
 
 rm -rf ${DIR_TESTE_EXE}/result-test.jtl || true
 
-
 if [ "${MODE}" = "preload" ]; then
 
     docker run --name jmeter --rm --add-host=meusei.test:host-gateway \
@@ -45,9 +44,15 @@ fi
 
 if [ "${MODE}" = "load" ]; then
 
+    yes | cp ${DIR_TESTE_EXE}/CargaTestPlan.jmx ${DIR_TESTE_EXE}/CargaTestPlan-test.jmx
+    sed -i 's|<boolProp name="TestPlan.serialize_threadgroups">false</boolProp>||g' ${DIR_TESTE_EXE}/CargaTestPlan-test.jmx
+    sed -i 's|<TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan">|<TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan"><boolProp name="TestPlan.serialize_threadgroups">true</boolProp>|g' ${DIR_TESTE_EXE}/CargaTestPlan-test.jmx
+    #cat ${DIR_TESTE_EXE}/CargaTestPlan-test.jmx
+    #exit 0
+
     docker run --name jmeter --rm --add-host=meusei.test:host-gateway \
         -i -v ${DIR_TESTE_EXE}:/t -w /t \
-        alpine/jmeter:5.6.3 -n -t CargaTestPlan.jmx -p /t/testProperties-test.prop -l /t/result-test.jtl \
+        alpine/jmeter:5.6.3 -n -t CargaTestPlan-test.jmx -p /t/testProperties-test.prop -l /t/result-test.jtl \
             -Jjmeter.save.saveservice.response_data=true -Jjmeter.save.saveservice.output_format=xml
 
     rm -rf ${DIR_TESTE_EXE}/testProperties-test.prop || true

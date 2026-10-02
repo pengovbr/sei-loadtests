@@ -6,8 +6,6 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -271,6 +269,11 @@
             <stringProp name="Argument.value">${__P(startupDelay_006, 400)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="solrPersistTime" elementType="Argument">
+            <stringProp name="Argument.name">solrPersistTime</stringProp>
+            <stringProp name="Argument.value">${__P(solrPersistTime, 300000)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="bolRodarAssets" elementType="Argument">
             <stringProp name="Argument.name">bolRodarAssets</stringProp>
             <stringProp name="Argument.value">${__P(bolRodarAssets, false)}</stringProp>
@@ -506,7 +509,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_001}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_001}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_001}</stringProp>
@@ -3050,7 +3053,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
             </hashTree>
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Clique em Editar" enabled="true"/>
             <hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Editar/Ajax">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Editar/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
                 <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -3097,7 +3100,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                 </elementProp>
               </HTTPSamplerProxy>
               <hashTree/>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Editar/Botao">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Clique em Editar/Botao" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                 <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3229,7 +3232,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">editor_ajax_qs</stringProp>
                   <stringProp name="RegexExtractor.regex">&quot;urlConfirmarAtualizacao&quot;\:&quot;controlador_ajax.php\?(.*?)&quot;,&quot;urlSalvar&quot;:</stringProp>
@@ -3239,7 +3242,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">editor_salvar_qs</stringProp>
                   <stringProp name="RegexExtractor.regex">,&quot;urlSalvar&quot;:&quot;controlador_rest.php\?(.*?)&quot;,&quot;atualizarArvoreAoIniciar&quot;</stringProp>
@@ -3269,7 +3272,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
                 </RegexExtractor>
                 <hashTree/>
-                <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor">
+                <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor" enabled="true">
                   <stringProp name="XPathExtractor.default"></stringProp>
                   <stringProp name="XPathExtractor.refname">txaEditors</stringProp>
                   <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
@@ -3279,7 +3282,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <boolProp name="XPathExtractor.namespace">false</boolProp>
                 </XPathExtractor>
                 <hashTree/>
-                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+                <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
                   <stringProp name="RegexExtractor.useHeaders">false</stringProp>
                   <stringProp name="RegexExtractor.refname">jsonSections</stringProp>
                   <stringProp name="RegexExtractor.regex">&quot;initialData&quot;:(.*?),&quot;root</stringProp>
@@ -3289,7 +3292,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <stringProp name="RegexExtractor.match_number">1</stringProp>
                 </RegexExtractor>
                 <hashTree/>
-                <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="JSON JMESPath Extractor">
+                <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="JSON JMESPath Extractor" enabled="true">
                   <stringProp name="JMESExtractor.referenceName">jsonSectionsKey</stringProp>
                   <stringProp name="JMESExtractor.jmesPathExpr">keys(@)</stringProp>
                   <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
@@ -3297,7 +3300,7 @@ vars.put(&quot;id_serie_rand&quot;, id_serie_rand + &quot;&quot;)
                   <stringProp name="Scope.variable">jsonSections</stringProp>
                 </JMESPathExtractor>
                 <hashTree/>
-                <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="JSON JMESPath Extractor">
+                <JMESPathExtractor guiclass="JMESPathExtractorGui" testclass="JMESPathExtractor" testname="JSON JMESPath Extractor" enabled="true">
                   <stringProp name="JMESExtractor.referenceName">jsonSectionsValue</stringProp>
                   <stringProp name="JMESExtractor.jmesPathExpr">*</stringProp>
                   <stringProp name="JMESExtractor.matchNumber">-1</stringProp>
@@ -3526,7 +3529,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 </ResponseAssertion>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Ajax">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 1/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                 <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php?${editor_ajax_qs}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3859,7 +3862,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 </ResponseAssertion>
                 <hashTree/>
               </hashTree>
-              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Ajax">
+              <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoDocInterno/Salvar Edicao 2/Ajax" enabled="true">
                 <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
                 <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador_ajax.php?${editor_ajax_qs}</stringProp>
                 <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -3882,7 +3885,7 @@ vars.put(&quot;secao_3_texto&quot;, sequencia_inicial + sequencia_pesquisa + seq
                 </ResponseAssertion>
                 <hashTree/>
               </hashTree>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
                 <stringProp name="scriptLanguage">groovy</stringProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
@@ -6563,7 +6566,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
           </JSR223Sampler>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -6600,7 +6603,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -6638,7 +6641,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_002}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_002}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_002}</stringProp>
@@ -8141,7 +8144,7 @@ for (j=1;j&lt;=dex.size(); j++){
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -8178,7 +8181,7 @@ for (j=1;j&lt;=dex.size(); j++){
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -8216,7 +8219,7 @@ for (j=1;j&lt;=dex.size(); j++){
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_003}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_003}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_003}</stringProp>
@@ -9139,7 +9142,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -9177,7 +9180,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_004}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_004}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_004}</stringProp>
@@ -10844,7 +10847,7 @@ vars.put(&quot;chkItemArray&quot;, v)
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -10882,7 +10885,7 @@ vars.put(&quot;chkItemArray&quot;, v)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_005}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_005}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_005}</stringProp>
@@ -11611,7 +11614,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -11649,7 +11652,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário006-PesquisaSolrDocInterno">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário006-PesquisaSolrDocInterno" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_006}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_006}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_006}</stringProp>
@@ -11683,13 +11686,15 @@ Verifique:
 sejam apagados entre uma execucao e outra do plano de teste
 &quot;&quot;&quot;
 
+solrPersistTime = vars.get(&quot;solrPersistTime&quot;).toInteger()
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
 d = new File(dirProtocolos)
 files = d.listFiles();
 timenow = new Date().getTime()
-files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
+files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; solrPersistTime )  }
 
 q = files.size()
 if (q == 0){
@@ -11813,13 +11818,18 @@ Verifique:
 sejam apagados entre uma execucao e outra do plano de teste
 &quot;&quot;&quot; 
 
+solrPersistTime = vars.get(&quot;solrPersistTime&quot;).toInteger()
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
 d = new File(dirProtocolos)
 files = d.listFiles();
 timenow = new Date().getTime()
-files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
+//files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
+files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; solrPersistTime )  }
+
+
 
 q = files.size()
 if (q == 0){
@@ -12304,7 +12314,7 @@ for (j=1;j&lt;=dis.size(); j++){
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -12341,7 +12351,7 @@ for (j=1;j&lt;=dis.size(); j++){
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
