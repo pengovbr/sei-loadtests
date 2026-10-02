@@ -1,3 +1,29 @@
+from configparser import ConfigParser
+import os
+
+def get_repo_owner_and_name():
+
+    config_path = os.path.join("../", "../", "../", ".git", "config")
+
+    if not os.path.exists(config_path):
+        raise FileNotFoundError("Not inside the root of a Git repository.")
+
+    config = ConfigParser()
+    config.read(config_path)
+
+    # Extract the remote tracking URL (usually 'origin')
+    if 'remote "origin"' in config:
+        url = config['remote "origin"']['url']
+        # URLs look like: https://github.com or git@github.com:owner/repo.git
+        parts = url.replace(":", "/").split("/")
+        owner = parts[-2]
+        repo_name = parts[-1].replace(".git", "")
+        return owner, repo_name
+
+    return None, None
+
+owner, repo = get_repo_owner_and_name()
+
 dbs = ["mysql"]
 vers = [
         {'nome': '4.0.9', 'checkout': '4.0.9'},
@@ -37,7 +63,7 @@ head="""|Versão| Resultado |
 |--|--|
 """
 
-body_image_carga="[![sei{}-carga-{}](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei{}-carga-{}.yml/badge.svg)](https://github.com/marlinhares/sei-loadtests/actions/workflows/badge-sei{}-carga-{}.yml)"
+body_image_carga="[![sei{}-carga-{}](https://github.com/{}/sei-loadtests/actions/workflows/badge-sei{}-carga-{}.yml/badge.svg)](https://github.com/{}/sei-loadtests/actions/workflows/badge-sei{}-carga-{}.yml)"
 
 body = ""
 
@@ -57,7 +83,7 @@ for v in vers:
 
     for db in dbs:
 
-        img_carga = body_image_carga.format(v['nome'], db, v['nome'], db, v['nome'], db)
+        img_carga = body_image_carga.format(v['nome'], db, owner, v['nome'], db, owner, v['nome'], db)
         body += '| ' + img_carga + ' '
 
     body += "|\n"
