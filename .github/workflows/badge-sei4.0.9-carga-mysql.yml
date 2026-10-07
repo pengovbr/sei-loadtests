@@ -1,4 +1,4 @@
-name: sei4.0.9-carga-mysql
+name: mysql-4.0.9
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: mysql-5.0.4
+name: postgres-5.0.4
 
 on:
   push:
@@ -10,4 +10,4 @@ jobs:
     secrets: inherit
     with:
       sei-version: 5.0.4
-      db: mysql
+      db: postgres

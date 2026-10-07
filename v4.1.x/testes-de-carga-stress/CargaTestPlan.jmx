@@ -6,8 +6,6 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
-      <boolProp name="TestPlan.functional_mode">false</boolProp>
-      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
@@ -271,6 +269,11 @@
             <stringProp name="Argument.value">${__P(startupDelay_006, 400)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="solrPersistTime" elementType="Argument">
+            <stringProp name="Argument.name">solrPersistTime</stringProp>
+            <stringProp name="Argument.value">${__P(solrPersistTime, 30000)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="bolRodarAssets" elementType="Argument">
             <stringProp name="Argument.name">bolRodarAssets</stringProp>
             <stringProp name="Argument.value">${__P(bolRodarAssets, false)}</stringProp>
@@ -506,7 +509,7 @@ if(bolKeepRuntimeAssets != &quot;true&quot;){
         </JSR223Sampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário001-Cadastrar Processos" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_001}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_001}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_001}</stringProp>
@@ -981,7 +984,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
             </RegexExtractor>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/SelecionarTipo">
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
             <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_escolher_tipo&amp;acao_origem=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -1057,7 +1060,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
             </elementProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">infra_hash</stringProp>
               <stringProp name="RegexExtractor.regex">action.*acao=procedimento_gerar.*infra_hash=(.*?)&quot;</stringProp>
@@ -1069,7 +1072,31 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
             </RegexExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">salvar_qs1</stringProp>
+              <stringProp name="RegexExtractor.regex">action=&quot;controlador.php\?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;(acao_retorno=procedimento_escolher_tipo&amp;infra_sistema=.*?&amp;infra_hash=.*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
+              <stringProp name="Scope.variable">hrefUsuarioCadastrar</stringProp>
+              <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">salvar_qs2</stringProp>
+              <stringProp name="RegexExtractor.regex">action=&quot;controlador.php\?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;(infra_sistema=.*?&amp;infra_hash=.*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
+              <stringProp name="Scope.variable">hrefUsuarioCadastrar</stringProp>
+              <boolProp name="RegexExtractor.default_empty_value">true</boolProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">infra_hash_contato</stringProp>
               <stringProp name="RegexExtractor.regex">acao=contato_selecionar.*infra_hash=(.*?)&apos;</stringProp>
@@ -1081,7 +1108,7 @@ vars.put(&quot;usuariosigla&quot;, usuario)</stringProp>
               <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
             </RegexExtractor>
             <hashTree/>
-            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
               <stringProp name="RegexExtractor.useHeaders">false</stringProp>
               <stringProp name="RegexExtractor.refname">infra_hash_assunto</stringProp>
               <stringProp name="RegexExtractor.regex">acao=assunto_selecionar.*infra_hash=(.*?)&apos;</stringProp>
@@ -1400,10 +1427,263 @@ vars.put(&quot;hdnInteressadosProcedimento&quot;, i)</stringProp>
             </JSR223Sampler>
             <hashTree/>
           </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Salvar" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Salvar" enabled="false">
             <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
             <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
             <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;acao_retorno=procedimento_escolher_tipo&amp;infra_sistema=${infra_sistema}&amp;infra_unidade_atual=${infra_unidade_atual}&amp;infra_hash=${infra_hash}</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="hdnInfraTipoPagina" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnInfraTipoPagina</stringProp>
+                  <stringProp name="Argument.value">1</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="selTipoProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">selTipoProcedimento</stringProp>
+                  <stringProp name="Argument.value">${id_tipo_procedimento}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="txtDescricao" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">txtDescricao</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="selTipoPrioridade" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">null</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">selTipoPrioridade</stringProp>
+                </elementProp>
+                <elementProp name="txtAssunto" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">txtAssunto</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnIdAssunto" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnIdAssunto</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="selAssuntos" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">selAssuntos</stringProp>
+                  <stringProp name="Argument.value">3</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="txtInteressadoProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">txtInteressadoProcedimento</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnIdInteressadoProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnIdInteressadoProcedimento</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="txtInteressadoUsuario" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">txtInteressadoUsuario</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnIdInteressadoUsuario" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnIdInteressadoUsuario</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="txaObservacoes" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">txaObservacoes</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="selGrauSigilo" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">selGrauSigilo</stringProp>
+                  <stringProp name="Argument.value">null</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="rdoNivelAcesso" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">rdoNivelAcesso</stringProp>
+                  <stringProp name="Argument.value">0</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="selHipoteseLegal" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">null</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  <stringProp name="Argument.name">selHipoteseLegal</stringProp>
+                </elementProp>
+                <elementProp name="hdnFlagProcedimentoCadastro" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnFlagProcedimentoCadastro</stringProp>
+                  <stringProp name="Argument.value">2</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnIdTipoProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnIdTipoProcedimento</stringProp>
+                  <stringProp name="Argument.value">${hdnIdTipoProcedimento}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnNomeTipoProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">hdnNomeTipoProcedimento</stringProp>
+                  <stringProp name="Argument.value">${hdnNomeTipoProcedimento}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnAssuntos" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">hdnAssuntos</stringProp>
+                  <stringProp name="Argument.value">${arrAssuntos1_g2}±${arrAssuntos1_g1}¥${arrAssuntos2_g2}±${arrAssuntos2_g1}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnInteressadosProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">hdnInteressadosProcedimento</stringProp>
+                  <stringProp name="Argument.value">${hdnInteressadosProcedimento}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnIdProcedimento" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnIdProcedimento</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnProtocoloFormatado" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnProtocoloFormatado</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnStaNivelAcessoGlobal" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnStaNivelAcessoGlobal</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnSinIndividual" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnSinIndividual</stringProp>
+                  <stringProp name="Argument.value">N</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnIdHipoteseLegalSugestao" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnIdHipoteseLegalSugestao</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnDtaGeracao" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                  <stringProp name="Argument.name">hdnDtaGeracao</stringProp>
+                  <stringProp name="Argument.value">16/05/2025</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnContatoObject" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnContatoObject</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnContatoIdentificador" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnContatoIdentificador</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+                <elementProp name="hdnAssuntoIdentificador" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.name">hdnAssuntoIdentificador</stringProp>
+                  <stringProp name="Argument.value"></stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="1121987468">iframe id=&quot;ifrArvore&quot;</stringProp>
+                <stringProp name="-117366789">iframe id=&quot;ifrConteudoVisualizacao&quot;</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.custom_message"></stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">16</intProp>
+            </ResponseAssertion>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">infra_hash</stringProp>
+              <stringProp name="RegexExtractor.regex">iframe.*acao=procedimento_visualizar&amp;acao_origem=procedimento_trabalhar.*infra_hash=(.*?)&quot;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
+              <stringProp name="Scope.variable">hrefUsuarioCadastrar</stringProp>
+              <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">id_procedimento</stringProp>
+              <stringProp name="RegexExtractor.regex">iframe.*acao=procedimento_visualizar&amp;acao_origem=procedimento_trabalhar.*id_procedimento=(.*?)&amp;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
+              <stringProp name="Scope.variable">hrefUsuarioCadastrar</stringProp>
+              <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NovoProc/Salvar">
+            <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding">iso-8859-1</stringProp>
+            <stringProp name="HTTPSampler.path">${path_prefix_sei}/controlador.php?acao=procedimento_gerar&amp;acao_origem=procedimento_gerar&amp;${salvar_qs1}${salvar_qs2}</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -4449,7 +4729,7 @@ vars.put(&quot;cadProcQtdDocs&quot;, &quot;0&quot;)
             <boolProp name="TransactionController.includeTimers">false</boolProp>
           </TransactionController>
           <hashTree>
-            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
               <stringProp name="scriptLanguage">groovy</stringProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -5349,7 +5629,7 @@ vars.put(&quot;upload_cnt&quot;, n + &quot;&quot;)</stringProp>
             </hashTree>
             <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Salvar" enabled="true"/>
             <hashTree>
-              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+              <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
                 <stringProp name="scriptLanguage">groovy</stringProp>
                 <stringProp name="parameters"></stringProp>
                 <stringProp name="filename"></stringProp>
@@ -6272,7 +6552,7 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário002-Pesquisar na Unidade" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_002}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_002}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_002}</stringProp>
@@ -6293,8 +6573,16 @@ vars.put(&quot;cadProcQtdDocsExterno&quot;, &quot;0&quot;)
             <stringProp name="parameters"></stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="cacheKey">true</stringProp>
-            <stringProp name="script">
-import org.apache.jmeter.services.FileServer;
+            <stringProp name="script">import org.apache.jmeter.services.FileServer;
+
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot; 
 
 basedir = FileServer.getFileServer().getBaseDir();
 
@@ -6304,21 +6592,11 @@ files = d.listFiles();
 files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-
-	q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
-
-
 
 
 Random rand = new Random();
@@ -6436,6 +6714,15 @@ for (j=1;j&lt;=dex.size(); j++){
               <stringProp name="script">
 import org.apache.jmeter.services.FileServer;
 
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot; 
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
@@ -6444,21 +6731,11 @@ files = d.listFiles();
 files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-
-	q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
-
-
 
 
 Random rand = new Random();
@@ -7853,7 +8130,7 @@ for (j=1;j&lt;=dex.size(); j++){
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário003-Atribuir Processo" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_003}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_003}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_003}</stringProp>
@@ -7877,6 +8154,15 @@ for (j=1;j&lt;=dex.size(); j++){
             <stringProp name="script">
 import org.apache.jmeter.services.FileServer;
 
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot;
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
@@ -7885,21 +8171,11 @@ files = d.listFiles();
 files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-
-	q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
-
-
 
 
 Random rand = new Random();
@@ -8740,7 +9016,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -8777,7 +9053,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -8815,7 +9091,7 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário004-Gerar PDF" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_004}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_004}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_004}</stringProp>
@@ -8838,6 +9114,16 @@ vars.put(&quot;protocolo_formatado&quot;, procedimento_formatado)</stringProp>
             <stringProp name="script">
 import org.apache.jmeter.services.FileServer;
 
+
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot;
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
@@ -8846,21 +9132,11 @@ files = d.listFiles();
 files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-
-	q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
-
-
 
 
 Random rand = new Random();
@@ -10444,7 +10720,7 @@ vars.put(&quot;chkItemArray&quot;, v)
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -10481,7 +10757,7 @@ vars.put(&quot;chkItemArray&quot;, v)
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -10519,7 +10795,7 @@ vars.put(&quot;chkItemArray&quot;, v)
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Cenário005-Anotação Registrar" enabled="true">
         <stringProp name="ThreadGroup.num_threads">${qtdUsers_005}</stringProp>
         <stringProp name="ThreadGroup.ramp_time">${rampup_005}</stringProp>
         <stringProp name="ThreadGroup.duration">${threadDuration_005}</stringProp>
@@ -10543,6 +10819,16 @@ vars.put(&quot;chkItemArray&quot;, v)
             <stringProp name="script">
 import org.apache.jmeter.services.FileServer;
 
+
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot;
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
@@ -10551,22 +10837,11 @@ files = d.listFiles();
 files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-	files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) }
-
-	q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
-
-
-
 
 Random rand = new Random();
 File f = files[rand.nextInt(files.size())];
@@ -11212,7 +11487,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -11249,7 +11524,7 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -11311,29 +11586,32 @@ vars.put(&quot;chkSinPrioridade&quot;, v)</stringProp>
             <stringProp name="script">
 import org.apache.jmeter.services.FileServer;
 
+
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot;
+
+solrPersistTime = vars.get(&quot;solrPersistTime&quot;).toInteger()
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
 d = new File(dirProtocolos)
 files = d.listFiles();
 timenow = new Date().getTime()
-files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
+files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; solrPersistTime )  }
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-    timenow = new Date().getTime()
-    files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000) }
-
-    q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
-
 
 Random rand = new Random();
 File f = files[rand.nextInt(files.size())];
@@ -11441,28 +11719,35 @@ for (j=1;j&lt;=dis.size(); j++){
               <stringProp name="script">
 import org.apache.jmeter.services.FileServer;
 
+msgError = &quot;&quot;&quot;
+Nao ha arquivos a serem processados no diretorio de processamento.
+Verifique:
+- startupDelay no properties
+- falha de cadastro no cenario1
+- vc pode deixar o parametro bolKeepRuntimeAssets=true para que os arquivos nao 
+sejam apagados entre uma execucao e outra do plano de teste
+&quot;&quot;&quot; 
+
+solrPersistTime = vars.get(&quot;solrPersistTime&quot;).toInteger()
+
 basedir = FileServer.getFileServer().getBaseDir();
 
 dirProtocolos = basedir + &quot;/${dirCadProc}&quot;
 d = new File(dirProtocolos)
 files = d.listFiles();
 timenow = new Date().getTime()
-files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
+//files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000)  }
+files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; solrPersistTime )  }
+
+
 
 q = files.size()
-while(q==0){
-
-	log.info(&quot;Esperando cair arquivos no dir de processos para pesquisar&quot;)
-	log.info(&quot;Vamos esperar 30 segs para verificar se ha protocolos a serem pesquisados&quot;)
-	Thread.sleep(30000)
-
-    d = new File(dirProtocolos)
-    files = d.listFiles();
-    timenow = new Date().getTime()
-    files = files.findAll{ it.getName().startsWith(&quot;unidade&quot;) and ((timenow - it.lastModified() ) &gt; 40000) }
-
-    q = files.size()
+if (q == 0){
+	
+	log.info(msgError)	
+	throw new Exception(msgError)    
 }
+
 
 
 Random rand = new Random();
@@ -11939,7 +12224,7 @@ for (j=1;j&lt;=dis.size(); j++){
             </hashTree>
           </hashTree>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -11976,7 +12261,7 @@ for (j=1;j&lt;=dis.size(); j++){
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

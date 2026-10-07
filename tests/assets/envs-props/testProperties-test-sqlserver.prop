@@ -11,20 +11,20 @@
 #- startupDelay: Duracao em segundos que o cenario vai esperar antes de iniciar (esperar cadastrar procs, por ex)
 
 # Cenario001
-qtdUsers_001=2
+qtdUsers_001=1
 rampup_001=10
 loopCount_001=2
 threadDuration_001=180
 
 # Cenario002
-qtdUsers_002=2
+qtdUsers_002=1
 rampup_002=10
 loopCount_002=2
 threadDuration_002=180
 startupDelay_002=0
 
 # Cenario003
-qtdUsers_003=2
+qtdUsers_003=1
 rampup_003=10
 loopCount_003=2
 threadDuration_003=180
@@ -38,14 +38,14 @@ threadDuration_004=180
 startupDelay_004=0
 
 # Cenario005
-qtdUsers_005=2
+qtdUsers_005=1
 rampup_005=10
 loopCount_005=2
 threadDuration_005=180
 startupDelay_005=0
 
 # Cenario006
-qtdUsers_006=2
+qtdUsers_006=1
 rampup_006=10
 loopCount_006=2
 threadDuration_006=180

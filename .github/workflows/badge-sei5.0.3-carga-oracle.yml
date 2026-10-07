@@ -1,4 +1,4 @@
-name: mysql-5.0.4
+name: oracle-5.0.3
 
 on:
   push:
@@ -9,5 +9,5 @@ jobs:
     uses: ./.github/workflows/testCarga.yml
     secrets: inherit
     with:
-      sei-version: 5.0.4
-      db: mysql
+      sei-version: 5.0.3
+      db: oracle

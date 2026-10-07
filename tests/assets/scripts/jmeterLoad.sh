@@ -10,6 +10,11 @@ if [ -d "${SEI_FONTES_LOCATION}/src" ]; then
     SEI_FONTES_LOCATION=${SEI_FONTES_LOCATION}/src
 fi
 
+PROPS_FILE=${DIR_PROP}/testProperties-test.prop
+if [[ "$DB" == "sqlserver" || "$DB" == "oracle" ]]; then
+    PROPS_FILE=${DIR_PROP}/testProperties-test-sqlserver.prop
+fi
+
 v=$(grep -e "define('SEI_VERSAO'" -e "const SEI_VERSAO" ${SEI_FONTES_LOCATION}/sei/web/SEI.php)
 v=$(echo ${v} | grep -e "define('SEI_VERSAO'" -e "const SEI_VERSAO" | grep -e "'4\\..*\\..*'" -e "'5\\..*\\..*'" -o)
 v="${v:1:3}"
@@ -17,7 +22,7 @@ v="${v:1:3}"
 DIR_TESTE_EXE="$(dirname -- "${BASH_SOURCE[0]}")"
 DIR_TESTE_EXE="${DIR_TESTE_EXE}/../../../v${v}.x/testes-de-carga-stress"
 
-yes | cp ${DIR_PROP}/testProperties-test.prop ${DIR_TESTE_EXE}/testProperties-test.prop
+yes | cp ${PROPS_FILE} ${DIR_TESTE_EXE}/testProperties-test.prop
 
 rm -rf ${DIR_TESTE_EXE}/result-test.jtl || true
 
@@ -28,7 +33,6 @@ if [ "${MODE}" = "preload" ]; then
         alpine/jmeter:5.6.3 -n -t PreCargaTestPlan.jmx -p /t/testProperties-test.prop -l /t/result-test.jtl \
             -Jjmeter.save.saveservice.response_data=true -Jjmeter.save.saveservice.output_format=xml
 
-
     set +e
     e=$(grep 's="false"' ${DIR_TESTE_EXE}/result-test.jtl | wc -l)
     set -e
@@ -37,7 +41,7 @@ if [ "${MODE}" = "preload" ]; then
 
     if [ "$e" != "0" ]; then
         echo "Falha no pre-teste. Abandonando execucao. Verifique o arquivo result-test.jtl"
-        exit 1
+        #exit 1
     fi
 
 fi

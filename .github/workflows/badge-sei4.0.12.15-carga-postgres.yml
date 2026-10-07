@@ -1,4 +1,4 @@
-name: sei4.1.3-carga-mysql
+name: postgres-4.0.12.15
 
 on:
   push:
@@ -9,5 +9,5 @@ jobs:
     uses: ./.github/workflows/testCarga.yml
     secrets: inherit
     with:
-      sei-version: 4.1.3
-      db: mysql
+      sei-version: 4.0.12.15
+      db: postgres

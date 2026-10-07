@@ -11,7 +11,9 @@ SEI_DOCKER_LOCATION_INFRA ?= $(SEI_DOCKER_LOCATION)/infra
 SEI_FONTES_REPO ?= https://github.com/pengovbr/sei
 SEI_FONTES_LOCATION ?= $(MAKEFILE_DIR)assets/repos/sei-fontes
 
-DB ?= "mysql"
+DB ?= mysql
+
+export DB
 
 
 carga: download-sei-docker download-sei-fontes sei-setup jmeter-precarga jmeter-carga
