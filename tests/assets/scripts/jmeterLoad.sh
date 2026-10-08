@@ -11,7 +11,7 @@ if [ -d "${SEI_FONTES_LOCATION}/src" ]; then
 fi
 
 PROPS_FILE=${DIR_PROP}/testProperties-test.prop
-if [[ "$DB" == "sqlserver" || "$DB" == "oracle" ]]; then
+if [[ "$DB" == "sqlserver" || "$DB" == "oracle" || "$DB" == "sqlserver" || "$DB" == "postgres" ]]; then
     PROPS_FILE=${DIR_PROP}/testProperties-test-sqlserver.prop
 fi
 
